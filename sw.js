@@ -1,6 +1,6 @@
 /* سپهر — service worker: app shell + offline poems */
 importScripts('config.js');
-const V = 'v9', SHELL = 'shell-' + V, API = 'api-cache';
+const V = 'v10', SHELL = 'shell-' + V, API = 'api-cache';
 let DATA_HOST = ''; try { DATA_HOST = new URL(self.SEPEHR.BACKEND_URL).hostname; } catch (e) {}
 const FILES = ['./', 'index.html', 'config.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png', 'icon.svg'];
 self.addEventListener('install', e => e.waitUntil(caches.open(SHELL).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));
