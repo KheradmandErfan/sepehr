@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- پیش از انتشار، USERNAME و نام مخزن را با نشانی واقعی سایت عوض کنید. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://kheradmanderfan.github.io/sepehr/</loc>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://kheradmanderfan.github.io/sepehr/"/>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://kheradmanderfan.github.io/sepehr/icon-512.png</image:loc>
+      <image:title>سپهر، گنجینه بی‌کران اشعار پارسی</image:title>
+    </image:image>
+  </url>
+</urlset>

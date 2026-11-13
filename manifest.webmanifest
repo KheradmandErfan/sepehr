@@ -1,0 +1,44 @@
+{
+ "name": "سپهر، گنجینه بی‌کران اشعار پارسی",
+ "short_name": "سپهر",
+ "description": "سپهر، گنجینه بی‌کران اشعار پارسی؛ خواندن و جستجوی شعر شاعران پارسی‌گو. به کوشش محمد عرفان خردمند",
+ "lang": "fa",
+ "dir": "rtl",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#052a2c",
+ "theme_color": "#052a2c",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "icon.svg",
+   "sizes": "any",
+   "type": "image/svg+xml",
+   "purpose": "any"
+  }
+ ],
+ "categories": [
+  "books",
+  "education",
+  "literature"
+ ],
+ "id": "./"
+}

@@ -1,0 +1,8 @@
+# سپهر، گنجینه بی‌کران اشعار پارسی
+# پیش از انتشار، USERNAME و نام مخزن را با نشانی واقعی سایت عوض کنید.
+User-agent: *
+Allow: /
+Disallow: /worker.js
+Disallow: /README-SETUP.md
+
+Sitemap: https://USERNAME.github.io/sepehr/sitemap.xml
