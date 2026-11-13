@@ -5,4 +5,4 @@ Allow: /
 Disallow: /worker.js
 Disallow: /README-SETUP.md
 
-Sitemap: https://USERNAME.github.io/sepehr/sitemap.xml
+Sitemap: https://kheradmanderfan.github.io/sepehr/sitemap.xml
