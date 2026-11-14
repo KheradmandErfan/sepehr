@@ -2,7 +2,7 @@
    شعرها و فهرست‌ها: «ابتدا کش، سپس به‌روزرسانی در پس‌زمینه» ⇒ بازشدن آنی
    شعر تصادفی: همیشه از شبکه (هرگز کهنه نمی‌شود)، کش فقط برای حالت آفلاین */
 importScripts('config.js');
-const V = 'v11', SHELL = 'shell-' + V, API = 'api-cache';
+const V = 'v13', SHELL = 'shell-' + V, API = 'api-cache';
 const host = u => { try { return new URL(u).hostname; } catch (e) { return ''; } };
 const WORKER_HOST = host(self.SEPEHR.BACKEND_URL), DATA_HOST = host(self.SEPEHR.DATA_API);
 const FILES = ['./', 'index.html', 'config.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png', 'icon.svg'];
