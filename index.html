@@ -1050,6 +1050,102 @@ html[data-btn=text] .dk[data-bm]{font-size:.8rem}
 .advp .row2{position:sticky;bottom:-18px;margin:0 -18px -18px;padding:12px 18px 18px;background:var(--solid);border-top:1px solid var(--gb)}
 @media (max-width:520px){.advp,.advp.glass{padding:14px 14px 16px}.advp .row2{bottom:-16px;margin:0 -14px -16px;padding:10px 14px 16px}.advp .row2 .btn{flex:1 1 30%;padding-inline:8px}.advp .row2 .btn.primary{flex:1 1 100%;order:-1}}
 @media (prefers-reduced-motion:reduce){.advp,.advp.glass,.advp.on,.advp.glass.on{transition:none!important;transform:none!important}}
+
+/* ===== v12: نشانگر بارگذاری ===== */
+.ld{position:fixed;left:50%;bottom:calc(98px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:10px;padding:9px 18px 9px 14px;border-radius:999px;background:var(--solid,rgba(6,38,40,.94));border:1px solid var(--gb);color:var(--ink);box-shadow:0 14px 34px -12px var(--shadow);transform:translate(-50%,26px) scale(.88);opacity:0;pointer-events:none;transition:opacity .35s var(--ease),transform .55s var(--ease)}
+.ld.on{opacity:1;transform:translate(-50%,0) scale(1)}
+.ld b{font-size:.86rem;font-weight:700;background:linear-gradient(100deg,var(--ink) 30%,var(--saffron) 50%,var(--ink) 70%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ldShine 1.8s linear infinite}
+.ld-star{width:22px;height:22px;position:relative;flex:none;animation:ldSpin 2.4s cubic-bezier(.6,0,.4,1) infinite}
+.ld-star::before,.ld-star::after{content:"";position:absolute;inset:3px;border:2px solid var(--saffron);border-radius:3px}
+.ld-star::after{transform:rotate(45deg);border-color:var(--turq)}
+@keyframes ldSpin{to{transform:rotate(360deg)}}@keyframes ldShine{to{background-position:-250% 0}}
+.ldbar{position:fixed;top:0;left:0;right:0;height:3px;z-index:61;pointer-events:none;opacity:0;transition:opacity .35s;background:linear-gradient(90deg,transparent,var(--turq),var(--saffron),transparent) -40% 0/40% 100% no-repeat;animation:ldBar 1.3s ease-in-out infinite}
+body.ldon .ldbar{opacity:1}
+@keyframes ldBar{to{background-position:140% 0}}
+.imgload{background:linear-gradient(100deg,var(--g2) 30%,var(--g1) 50%,var(--g2) 70%) 0 0/300% 100%;animation:sh 1.4s linear infinite}
+/* ===== v12: دکمهٔ دانلود شعر (بالا سمت راست کادر شعر) ===== */
+.sheet{position:relative;padding-top:clamp(56px,8vw,72px)}
+.dlb{position:absolute;top:clamp(20px,3.4vw,32px);right:clamp(26px,6vw,46px);z-index:3;width:38px;height:38px;border-radius:50%;border:1px solid var(--gb);background:var(--g1);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0;transition:transform .5s var(--ease),background .4s,border-color .4s,color .4s}
+.dlb:hover{transform:translateY(-2px) scale(1.08)}.dlb:active{transform:scale(.88)}
+.dli{position:absolute;inset:0;display:grid;place-items:center;transition:transform .55s var(--ease),opacity .35s ease}
+.dli svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dli.b{opacity:0;transform:scale(.4) rotate(-45deg)}
+.dlb[data-s="1"] .dli.a{opacity:0;transform:scale(.4) rotate(45deg)}
+.dlb[data-s="1"] .dli.b{opacity:1;transform:none}
+.dlb[data-s="1"]{color:var(--rose);border-color:color-mix(in srgb,var(--rose) 60%,transparent)}
+.dlr{position:absolute;inset:-4px;border-radius:50%;border:2px solid transparent;border-top-color:var(--saffron);opacity:0;transition:opacity .25s;pointer-events:none}
+.dlb[data-s="busy"] .dlr{opacity:1;animation:sp .8s linear infinite}
+.dlb[data-s="busy"] .dli{opacity:.35}
+/* ===== v12: نوار ابزار شعر: همیشه چسبان و فقط آیکون ===== */
+html .tools{position:sticky!important;flex-wrap:nowrap!important;overflow:visible!important;justify-content:space-between!important;gap:4px!important;padding:5px 8px!important}
+html .tools .tbtn,html[data-btn] .tools .tbtn[data-bm]{flex:1 1 0!important;min-width:26px!important;max-width:36px!important;width:auto!important;height:32px!important;padding:0!important;border-radius:50%!important;font-size:.76rem!important}
+html .tools .tbtn .bl{display:none!important}
+html .tools .tbtn.tbtn-t .bl{display:inline!important}
+html .tools .tbtn>svg{display:block!important;width:17px!important;height:17px!important}
+/* ===== v12: تنظیمات دانلود ===== */
+.dlrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0 4px}
+.dlbar{height:8px;border-radius:99px;background:var(--g1);border:1px solid var(--gb);overflow:hidden;margin:8px 0}
+.dlbar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--turq),var(--saffron));background-size:200% 100%;transition:width .7s var(--ease)}
+.dlbar.run i{animation:dlMove 1.6s linear infinite}@keyframes dlMove{to{background-position:-200% 0}}
+.sw{display:inline-flex;align-items:center;gap:10px;cursor:pointer;user-select:none;position:relative}
+.sw input{position:absolute;opacity:0;pointer-events:none}
+.sw i{width:46px;height:26px;border-radius:99px;background:var(--g1);border:1px solid var(--gb);position:relative;transition:background .4s var(--ease),border-color .4s;flex:none}
+.sw i::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:18px;height:18px;border-radius:50%;background:var(--ink2);transition:transform .5s var(--spring),background .3s}
+.sw input:checked+i{background:var(--turq);border-color:transparent}
+.sw input:checked+i::after{transform:translateX(-20px);background:#fff}
+.sw input:focus-visible+i{outline:2px solid var(--saffron);outline-offset:2px}
+.btn.danger{border-color:color-mix(in srgb,var(--rose) 65%,transparent)}
+.btn.busy{opacity:.7;pointer-events:none;animation:pulseBtn 1s ease-in-out infinite}@keyframes pulseBtn{50%{opacity:.45}}
+/* ===== v12: پنل مدیریت ===== */
+.admin{margin:16px 0;padding-top:12px;border-top:1px solid var(--gb)}
+.ulist{display:grid;gap:8px;margin:10px 0}
+.ucard{border:1px solid var(--gb);border-radius:18px;background:linear-gradient(135deg,var(--g1),var(--g2));overflow:hidden;transition:box-shadow .4s}
+.ucard.open{box-shadow:0 0 0 1px var(--saffron)}
+.uhead{width:100%;display:flex;align-items:center;gap:8px;flex-wrap:wrap;text-align:start;padding:10px 14px;background:none;border:0;color:var(--ink);font:inherit;cursor:pointer}
+.uhead small{margin-inline-start:auto}
+.badge{font-size:.7rem;padding:2px 9px;border-radius:99px;border:1px solid var(--gb)}.badge.ok{color:var(--turq)}.badge.bad{color:var(--rose);border-color:var(--rose)}
+.ubody{padding:4px 14px 14px;animation:fadeUp .5s var(--ease) both}
+.uacts{list-style:none;padding:0;margin:4px 0 8px;display:grid;gap:3px;font-size:.88rem}
+.ctl{display:grid;gap:8px;margin-top:10px}
+.ck{display:flex;align-items:center;gap:8px;font-size:.9rem}
+.row2x{display:flex;gap:8px;flex-wrap:wrap}.row2x>*{flex:1 1 140px}
+
+
+/* ===== v12: نقشهٔ زادگاه ===== */
+.mapwrap{width:100%;max-width:640px;margin:8px auto;border-radius:28px;overflow:hidden;border:1px solid var(--gb);background:radial-gradient(circle at 50% 40%,rgba(18,112,122,.35),rgba(3,28,30,.6));aspect-ratio:1/1}
+.mapwrap canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
+
+
+/* ===== v12: مشاعره ===== */
+.mview{animation:mIn .6s var(--ease) both}
+@keyframes mIn{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+.mode{transition:transform .5s var(--ease),box-shadow .5s,border-color .4s}.mode:active{transform:scale(.97)}
+.orbit{width:120px;height:120px;margin:6px auto 14px;position:relative}
+.orbit i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--turq);opacity:0;animation:ripple 2.4s ease-out infinite}
+.orbit i:nth-child(2){animation-delay:.8s}.orbit i:nth-child(3){animation-delay:1.6s}
+.orbit b{position:absolute;inset:0;display:grid;place-items:center;font-size:2.2rem;color:var(--saffron);animation:ldSpin 3.2s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes ripple{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.15);opacity:0}}
+.tbar{height:6px;border-radius:9px;background:var(--g1);overflow:hidden;margin:8px 0 12px}
+.tbar i{display:block;height:100%;width:100%;transform-origin:right;transform:scaleX(0);background:linear-gradient(90deg,var(--saffron),var(--turq))}
+.tbar.wb i{animation:tfill 10s linear forwards}
+@keyframes tfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.bigletter.flip{animation:letterIn .75s var(--spring) both}
+@keyframes letterIn{0%{transform:perspective(400px) rotateX(90deg) scale(.5);opacity:0}100%{transform:none;opacity:1}}
+.score>div{transition:box-shadow .5s var(--ease),transform .5s var(--ease)}.score>div.turn{transform:translateY(-2px)}
+.score b.bump{animation:bumpN .6s var(--spring)}@keyframes bumpN{40%{transform:scale(1.55);color:var(--saffron)}}
+.hist li.new{animation:histIn .65s var(--ease) both}@keyframes histIn{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+.timer{transition:color .4s}.timer.low{color:var(--rose);animation:pulseBtn 1s ease-in-out infinite}
+.think{display:none;text-align:center;margin:4px 0}.think.on{display:block;animation:mIn .45s var(--ease) both}
+.dots i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--saffron);margin:0 3px;animation:dotJ 1.1s ease-in-out infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dotJ{0%,70%,100%{transform:translateY(0);opacity:.5}35%{transform:translateY(-8px);opacity:1}}
+.chk{display:none;align-items:center;justify-content:center;gap:10px;margin:8px 0;font-size:.9rem}.chk.on{display:flex;animation:mIn .4s var(--ease) both}
+.lines .inp{transition:opacity .4s,box-shadow .4s,transform .5s var(--ease)}.lines .inp:disabled{opacity:.5}
+.win{animation:winIn .9s var(--spring) both}@keyframes winIn{from{opacity:0;transform:scale(.6) translateY(10px)}to{opacity:1;transform:none}}
+.turnpulse{position:fixed;inset:0;z-index:70;pointer-events:none;animation:turnP 1.2s ease-out 1 both}
+@keyframes turnP{0%{box-shadow:inset 0 0 0 0 rgba(239,68,68,0)}22%{box-shadow:inset 0 0 90px 18px rgba(239,68,68,.7)}100%{box-shadow:inset 0 0 0 0 rgba(239,68,68,0)}}
+@media (prefers-reduced-motion:reduce){.turnpulse,.orbit i,.dots i{animation:none}}
+
 </style>
 </head>
 <body>
@@ -1072,6 +1168,8 @@ html[data-btn=text] .dk[data-bm]{font-size:.8rem}
 <main><div id="view" aria-live="polite"></div></main>
 
 <div class="toast glass" id="toast" role="status"></div>
+<div class="ld" id="ld" role="status" aria-live="polite"><span class="ld-star" aria-hidden="true"></span><b>در حال بارگذاری…</b></div>
+<div class="ldbar" aria-hidden="true"></div>
 <noscript><p style="text-align:center;padding:40px">سپهر — برای خواندن شعرها جاوااسکریپت را فعال کنید.</p></noscript>
 
 <script src="config.js"></script>
@@ -1086,6 +1184,8 @@ const CFG=window.SEPEHR||{};
 const WORKER_API=CFG.BACKEND_URL?String(CFG.BACKEND_URL).replace(/\/$/,'')+'/api/d':'';
 let API=String(CFG.DATA_API||WORKER_API).replace(/\/$/,'');
 try{if(WORKER_API&&API!==WORKER_API&&sessionStorage.getItem('gj-viaw')==='1')API=WORKER_API}catch{}
+/* اتصال زودهنگام به سرویس‌ها تا نخستین درخواست سریع‌تر باشد */
+(function(){const seen=new Set();[API,CFG.BACKEND_URL].forEach(u=>{try{const o=new URL(u).origin;if(seen.has(o))return;seen.add(o);const l=document.createElement('link');l.rel='preconnect';l.href=o;l.crossOrigin='anonymous';document.head.appendChild(l)}catch{}})})();
 const PREF={m:{},get(k){if(k in this.m)return this.m[k];try{return localStorage.getItem(k)}catch{return null}},set(k,v){this.m[k]=v;try{localStorage.setItem(k,v)}catch{}}};
 const metreOf=o=>{const k=Object.keys(o||{}).find(x=>/metre$/i.test(x)&&o[x]&&typeof o[x]==='object');return k?o[k]:null};
 const POEM_Q='?catInfo=true&catPoems=false&rhymes=true&recitations=false&images=false&songs=false&comments=false&verseDetails=true&navigation=true&relatedpoems=false';
@@ -1193,39 +1293,169 @@ function h(tag,p={},...kids){
 }
 
 /* ---------- data ---------- */
+/* ---------- نشانگر بارگذاری (فارسی) ---------- */
+const LOAD=(()=>{
+  const el=$('#ld'),txt=el&&el.querySelector('b');let n=0,t1=0,t2=0,th=0,shown=0;
+  function begin(label){
+    if(!el)return()=>{};
+    n++;
+    if(n===1){
+      clearTimeout(th);clearTimeout(t1);clearTimeout(t2);
+      t1=setTimeout(()=>{if(n>0){txt.textContent=label||'در حال بارگذاری…';el.classList.add('on');document.body.classList.add('ldon');shown=Date.now()}},400);
+      t2=setTimeout(()=>{if(n>0&&el.classList.contains('on'))txt.textContent='هنوز در حال بارگذاری… اتصال کند است'},9000);
+    }
+    let d=0;
+    return()=>{
+      if(d)return;d=1;n=Math.max(0,n-1);
+      if(!n){clearTimeout(t1);clearTimeout(t2);
+        if(el.classList.contains('on'))th=setTimeout(()=>{el.classList.remove('on');document.body.classList.remove('ldon')},Math.max(0,450-(Date.now()-shown)))}
+    };
+  }
+  return {begin};
+})();
+const idle=f=>('requestIdleCallback' in window)?requestIdleCallback(f,{timeout:2500}):setTimeout(f,900);
+
+/* ---------- ذخیره‌گاه محلی (IndexedDB): شعرهای دانلودشده، حافظهٔ پاسخ‌ها ---------- */
+const LS=(()=>{
+  let dbp=null,idsP=null;
+  const open=()=>dbp||(dbp=new Promise(res=>{
+    try{
+      const rq=indexedDB.open('sepehr-store',1);
+      rq.onupgradeneeded=()=>{const d=rq.result;d.createObjectStore('poems',{keyPath:'id'});d.createObjectStore('kv',{keyPath:'k'});d.createObjectStore('vp',{keyPath:'k'}).createIndex('t','t');d.createObjectStore('meta',{keyPath:'k'})};
+      rq.onsuccess=()=>res(rq.result);rq.onerror=()=>res(null);rq.onblocked=()=>res(null);
+    }catch{res(null)}
+  }));
+  const run=async(store,mode,fn)=>{
+    const d=await open();if(!d)return null;
+    return new Promise(res=>{
+      try{
+        const t=d.transaction(store,mode),st=t.objectStore(store);let out=null;
+        const q=fn(st);
+        if(q&&typeof q==='object'&&'onsuccess' in q)q.onsuccess=()=>{out=q.result};
+        t.oncomplete=()=>res(out);t.onerror=()=>res(null);t.onabort=()=>res(null);
+      }catch{res(null)}
+    });
+  };
+  const CS=typeof CompressionStream==='function'&&typeof DecompressionStream==='function'&&typeof Blob==='function'&&!!Blob.prototype.stream;
+  async function pack(o){
+    const j=JSON.stringify(o);
+    if(CS){try{return {z:new Uint8Array(await new Response(new Blob([j]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer())}}catch{}}
+    return {j};
+  }
+  async function unpack(r){
+    if(!r)return null;
+    try{
+      if(r.j)return JSON.parse(r.j);
+      if(r.z)return JSON.parse(await new Response(new Blob([r.z]).stream().pipeThrough(new DecompressionStream('gzip'))).text());
+    }catch{}
+    return null;
+  }
+  const getIds=()=>idsP||(idsP=run('poems','readonly',st=>st.getAllKeys()).then(a=>a||[]));
+  let sc=null;
+  return {
+    async getPoem(id){return unpack(await run('poems','readonly',st=>st.get(+id)))},
+    async hasPoem(id){return (await run('poems','readonly',st=>st.getKey(+id)))!=null},
+    async putPoem(p){
+      const id=+p.id;if(!id||!((p.verses&&p.verses.length)||p.plainText))return false;
+      const r=await pack(p);r.id=id;r.t=Date.now();
+      await run('poems','readwrite',st=>st.put(r));
+      if(idsP)idsP.then(a=>{if(!a.includes(id))a.push(id)});
+      return true;
+    },
+    async delPoem(id){await run('poems','readwrite',st=>st.delete(+id));idsP=null;sc=null},
+    async countPoems(){return (await run('poems','readonly',st=>st.count()))||0},
+    async clearPoems(){await run('poems','readwrite',st=>st.clear());idsP=null;sc=null},
+    async randomPoem(){
+      const ids=await getIds();if(!ids.length)return null;
+      return this.getPoem(ids[Math.floor(Math.random()*ids.length)]);
+    },
+    async kvGet(k,store){return run(store||'kv','readonly',st=>st.get(k))},
+    async kvPut(k,v,store){await run(store||'kv','readwrite',st=>st.put({k,t:Date.now(),v}))},
+    async prune(max){
+      const n=await run('vp','readonly',st=>st.count());if(!n||n<=max)return;
+      const d=await open();if(!d)return;
+      let left=n-max;
+      await new Promise(res=>{try{const t=d.transaction('vp','readwrite'),q=t.objectStore('vp').index('t').openCursor();q.onsuccess=()=>{const c=q.result;if(c&&left-->0){c.delete();c.continue()}};t.oncomplete=()=>res();t.onerror=t.onabort=()=>res()}catch{res()}});
+    },
+    async clearAll(){await Promise.all([this.clearPoems(),run('kv','readwrite',st=>st.clear()),run('vp','readwrite',st=>st.clear())])},
+    /* جستجوی متنی در شعرهای دانلودشده (وقتی اینترنت نیست) */
+    async searchLocal(term,page,size,poetId){
+      const nt=norm(term).replace(/\s+/g,' ').trim(),key=nt+'|'+(poetId||0);
+      if(!sc||sc.key!==key)sc={key,matches:[],last:-1,done:false};
+      const d=await open();if(!d)return {items:[],total:0};
+      while(!sc.done&&sc.matches.length<page*size){
+        const recs=await new Promise(res=>{try{const q=d.transaction('poems','readonly').objectStore('poems').getAll(IDBKeyRange.lowerBound(sc.last,true),60);q.onsuccess=()=>res(q.result||[]);q.onerror=()=>res([])}catch{res([])}});
+        if(!recs.length){sc.done=true;break}
+        for(const r of recs){
+          sc.last=r.id;
+          const p=await unpack(r);if(!p)continue;
+          if(poetId&&!(p.category&&p.category.poet&&String(p.category.poet.id)===String(poetId)))continue;
+          const txt=p.plainText||(p.verses||[]).map(v=>v.text).join('\n');
+          if(norm(txt).replace(/\s+/g,' ').includes(nt)||norm(p.title||'').includes(nt))sc.matches.push({id:p.id,poemId:p.id,title:p.title,fullTitle:p.fullTitle,plainText:txt,excerpt:txt.split(/\r?\n/)[0]});
+        }
+      }
+      return {items:sc.matches.slice((page-1)*size,page*size),total:sc.done?sc.matches.length:null};
+    }
+  };
+})();
+
 const cache=new Map(),inflight=new Map();
 /* درخواست مستقیم به سرویس داده؛ فقط اگر در دسترس نبود، از راه Worker (یک‌بار برای کل نشست) */
-async function dfetch(path,fresh){
+async function dfetch(path,fresh,quiet){
+  const end=quiet?null:LOAD.begin();
   const one=async base=>{
-    const ac=new AbortController(),t=setTimeout(()=>ac.abort(),6000);
+    const ac=new AbortController(),t=setTimeout(()=>ac.abort(),7000);
     try{const r=await fetch(base+path,fresh?{cache:'no-store',signal:ac.signal}:{signal:ac.signal});if(r.status>=500)throw new Error('HTTP '+r.status);return r}
     finally{clearTimeout(t)}
   };
-  try{return await one(API)}
-  catch(e){
-    if(WORKER_API&&API!==WORKER_API){
-      const r=await one(WORKER_API);
-      API=WORKER_API;try{sessionStorage.setItem('gj-viaw','1')}catch{}
-      return r;
+  try{
+    try{return await one(API)}
+    catch(e){
+      if(WORKER_API&&API!==WORKER_API){
+        const r=await one(WORKER_API);
+        API=WORKER_API;try{sessionStorage.setItem('gj-viaw','1')}catch{}
+        return r;
+      }
+      throw e;
     }
-    throw e;
-  }
+  }finally{end&&end()}
 }
-async function get(path,fresh){
+const STALE=12*3600e3;
+const NOPERSIST=/\/poem\/random|\/search|[?&]term=/;
+const POEM_PATH=/^\/poem\/(\d+)\?/;
+/* خواندن: حافظهٔ درون‌برنامه ← شعرهای دانلودشده ← حافظهٔ پایدار (بازشدن آنی) ← شبکه (با تازه‌سازی در پس‌زمینه) */
+async function get(path,fresh,quiet){
   if(!fresh&&cache.has(path))return cache.get(path);
   if(!fresh&&inflight.has(path))return inflight.get(path);
   const job=(async()=>{
-    const res=await dfetch(path,fresh);
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const data=await res.json();
-    if(!fresh)cache.set(path,data);
+    const pm=POEM_PATH.exec(path),isPoem=!!pm;
+    if(!fresh&&!NOPERSIST.test(path)){
+      if(isPoem&&(path.endsWith(POEM_Q)||path.endsWith(POEMQ))){
+        const lp=await LS.getPoem(+pm[1]);
+        if(lp){cache.set(path,lp);return lp}
+      }
+      const hit=await LS.kvGet(path,isPoem?'vp':'kv');
+      if(hit&&hit.v){
+        cache.set(path,hit.v);
+        if(!isPoem&&Date.now()-hit.t>STALE)idle(()=>{fetchJson(path,true).then(d=>{cache.set(path,d);LS.kvPut(path,d)}).catch(()=>{})});
+        return hit.v;
+      }
+    }
+    const data=await fetchJson(path,fresh,quiet);
+    if(!fresh){cache.set(path,data);if(!NOPERSIST.test(path))LS.kvPut(path,data,isPoem?'vp':'kv')}
     return data;
   })();
   if(fresh)return job;
   inflight.set(path,job);
   try{return await job}finally{inflight.delete(path)}
 }
+async function fetchJson(path,fresh,quiet){
+  const res=await dfetch(path,fresh,quiet);
+  if(!res.ok)throw new Error('HTTP '+res.status);
+  return res.json();
+}
 const getPoets=()=>get('/poets');
+idle(()=>LS.prune(300));
 
 /* ---------- favorites, theme, toast ---------- */
 const favs={
@@ -1401,9 +1631,16 @@ function errorBox(retry){
 /* ---------- شعر تصادفی: هرگز کش نمی‌شود؛ شعر بعدی از پیش و در پس‌زمینه آماده می‌شود ---------- */
 const RND={mem:null,busy:false,
   async fetchOne(){
-    let p=await get('/poem/random',true);
-    if(!p.verses||!p.verses.length)p=await get('/poem/'+p.id+POEM_Q);
-    return p;
+    const n=await LS.countPoems().catch(()=>0);
+    if(n>=30||(n>0&&!navigator.onLine)){const lp=await LS.randomPoem();if(lp)return lp}
+    try{
+      let p=await get('/poem/random',true,true);
+      if(!p.verses||!p.verses.length)p=await get('/poem/'+p.id+POEM_Q);
+      return p;
+    }catch(e){
+      if(n>0){const lp=await LS.randomPoem();if(lp)return lp}
+      throw e;
+    }
   },
   async prefetch(){
     if(this.busy||this.mem)return;
@@ -1761,10 +1998,16 @@ async function poemPage(id,tok){
     poemEl.classList.toggle('nums',on);numBtn.setAttribute('aria-pressed',String(on));
     try{localStorage.setItem('gj-num',on?'1':'0')}catch{}syncPush();
   },{'aria-pressed':String(numOn())});
-  const offBtn=tb('<svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"/></svg>','ذخیره برای خواندن برون‌خط',async()=>{
-    try{if(offBtn.getAttribute('aria-pressed')==='true'){await OFF.remove(p.id);offBtn.setAttribute('aria-pressed','false');toast('از شعرهای برون‌خط برداشته شد')}else{await OFF.save(p.id);offBtn.setAttribute('aria-pressed','true');toast('برای خواندن برون‌خط ذخیره شد')}}catch{toast('ذخیره انجام نشد')}
-  },{'aria-pressed':'false'});
-  OFF.has(p.id).then(v=>{if(v)offBtn.setAttribute('aria-pressed','true')});
+  const dlb=h('button',{class:'dlb',type:'button'});
+  dlb.innerHTML='<i class="dli a"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"/></svg></i><i class="dli b"><svg viewBox="0 0 24 24"><path d="M5 7.5h14M9.5 7.5V4.5h5v3M7 7.5l.9 12h8.2l.9-12M10.5 11v5.5M13.5 11v5.5"/></svg></i><b class="dlr"></b>';
+  const setDl=on=>{dlb.dataset.s=on?'1':'0';const t=on?'حذف شعر دانلودشده':'دانلود شعر برای خواندن برون‌خط';dlb.title=t;dlb.setAttribute('aria-label',t)};
+  setDl(false);OFF.has(p.id).then(v=>{if(v&&dlb.dataset.s!=='busy')setDl(true)});
+  dlb.onclick=async()=>{
+    if(dlb.dataset.s==='busy')return;
+    const was=dlb.dataset.s==='1';dlb.dataset.s='busy';
+    try{if(was){await OFF.remove(p.id);setDl(false);toast('شعر از دانلودها حذف شد')}else{await OFF.save(p.id);setDl(true);toast('شعر برای خواندن برون‌خط دانلود شد')}}
+    catch{setDl(was);toast(was?'حذف انجام نشد':'دانلود انجام نشد')}
+  };
   const penBtn=tb(ICON.pen,'تغییر خط شعر',()=>openPanel('fonts'));
   document.documentElement.style.setProperty('--fs',Number(localStorage.getItem('gj-fs')||1.28)+'rem');
   const bump=d=>{const s=Math.min(2.2,Math.max(.95,(Number(localStorage.getItem('gj-fs')||1.28)+d)));localStorage.setItem('gj-fs',s.toFixed(2));syncPush();document.documentElement.style.setProperty('--fs',s+'rem')};
@@ -1777,21 +2020,19 @@ async function poemPage(id,tok){
   const upB=tb(svgOf('up'),'رفتن به بالای صفحه',()=>scrollTo({top:0,behavior:'smooth'}));
   const dnB=tb(svgOf('down'),'رفتن به پایین صفحه',()=>scrollTo({top:document.body.scrollHeight,behavior:'smooth'}));
   const infB=tb(svgOf('info'),'رفتن به بخش اطلاعات شعر',()=>{const x=$('.secnav');x&&x.scrollIntoView({block:'start',behavior:'smooth'})});
-  if(PREF.get('gj-follow')==='0')ctx.follow=false;
-  const folB=tb(svgOf('locate'),'لغزش خودکار به خط در حال خوانش',()=>{ctx.follow=ctx.follow===false;PREF.set('gj-follow',ctx.follow===false?'0':'1');toast(ctx.follow===false?'دنبال‌کردن خط خاموش شد':'دنبال‌کردن خط روشن شد');folB.setAttribute('aria-pressed',String(ctx.follow!==false))},{'aria-pressed':String(ctx.follow!==false)});
-  const pinOn=()=>PREF.get('gj-pin')!=='0';
-  const pinB=tb('<svg viewBox="0 0 24 24"><path d="M9 4h6l-1 6 3 3H7l3-3zM12 13v7"/></svg>','چسبانی نوار ابزار به بالای صفحه',()=>{const on=!pinOn();PREF.set('gj-pin',on?'1':'0');toast(on?'نوار ابزار چسبان شد':'نوار ابزار از حالت چسبان درآمد');pinB.setAttribute('aria-pressed',String(on));const t=$('.tools');if(t)t.classList.toggle('unpin',!on)},{'aria-pressed':String(pinOn())});
   view.replaceChildren(
     crumbs(trail),
     h('article',{class:'sheet glass'},
+      dlb,
       h('h1',{text:p.title}),h('p',{class:'by',text:poet}),
-      h('div',{class:'tools'+(pinOn()?'':' unpin')},infB,upB,dnB,folB,pinB,numBtn,copyLink,copyText,share,favBtn,offBtn,penBtn,aPlus,aMinus),
+      h('div',{class:'tools'},infB,upB,dnB,numBtn,copyLink,copyText,share,favBtn,penBtn,aPlus,aMinus),
       facts,sumBox,poemSearch(poemEl),poemEl,
       sectionsBar(p,sum,meta,tok,ctx,poemEl)),
     nav);
   const nid=(location.hash.split('/')[3]||'');
   if(/^b\d+$/.test(nid))setTimeout(()=>{const w=poemEl.querySelector('.bt[data-i="'+(+nid.slice(1)-1)+'"] .bv');if(w){w.click();w.scrollIntoView({block:'center'})}},300);
   else if(nid)setTimeout(()=>{const b=$('.secnav button[data-k=notes]');b&&b.click()},400);
+  idle(()=>{[p.next,p.previous].forEach(x=>{if(x&&x.id)get('/poem/'+x.id+POEM_Q,false,true).catch(()=>{})})});
 }
 const NA_LAST=t=>norm(t).replace(/\s/g,'').slice(-1);
 function poemSearch(poemEl){
@@ -2219,7 +2460,11 @@ async function searchPage(term,poetId,tok,fstr){
   const fetchPage=async()=>{
     let url=`/poems/search?term=${encodeURIComponent(fixYK(term))}&PageNumber=${page}&PageSize=${size}`;
     if(scopePoet)url+='&poetId='+scopePoet.id;
-    const res=await dfetch(url);
+    let res;
+    try{res=await dfetch(url)}catch(e){
+      if((await LS.countPoems())>0){const lr=await LS.searchLocal(term,page,size,scopePoet&&scopePoet.id);if(lr.total!=null)total=lr.total;return lr.items}
+      throw e;
+    }
     if(!res.ok)throw new Error('HTTP '+res.status);
     try{const po=JSON.parse(res.headers.get('x-paging-options')||'null');if(po&&po.totalCount!=null)total=po.totalCount}catch{}
     return res.json();
@@ -2474,7 +2719,10 @@ function poetImgUrls(p){
 function attachImg(host,p){
   const urls=poetImgUrls(p);if(!urls.length)return;
   const im=h('img',{alt:'',loading:'lazy',decoding:'async',src:urls[0]});
-  im.onerror=()=>im.remove();
+  im.style.cssText='opacity:0;transition:opacity .5s ease';
+  host.classList.add('imgload');
+  im.onload=()=>{im.style.opacity=1;host.classList.remove('imgload')};
+  im.onerror=()=>{im.remove();host.classList.remove('imgload')};
   host.append(im);
 }
 function poetCard(p){
@@ -3002,21 +3250,114 @@ function setToken(t){ACCT.token=t||'';try{t?localStorage.setItem('gj-tok',t):loc
 async function api(path,opts){
   opts=opts||{};
   if(!BACKEND)throw new Error('این بخش هنوز توسعه داده نشده است.');
-  const res=await fetch(BACKEND+path,{method:opts.method||'GET',headers:Object.assign({'content-type':'application/json'},ACCT.token?{authorization:'Bearer '+ACCT.token}:{}),body:opts.body?JSON.stringify(opts.body):undefined});
-  let j={};try{j=await res.json()}catch{}
-  if(!res.ok){const e=new Error(j.error||'خطا در ارتباط با کارساز');e.status=res.status;throw e}
-  return j;
+  const end=opts.quiet?null:LOAD.begin('در حال ارتباط با کارساز…');
+  try{
+    let res;
+    try{res=await fetch(BACKEND+path,{method:opts.method||'GET',headers:Object.assign({'content-type':'application/json'},ACCT.token?{authorization:'Bearer '+ACCT.token}:{}),body:opts.body?JSON.stringify(opts.body):undefined,keepalive:false})}
+    catch{const e=new Error('اتصال به کارساز برقرار نشد. اینترنت را بررسی کنید.');e.status=0;throw e}
+    let j={};try{j=await res.json()}catch{}
+    if(!res.ok){const e=new Error(j.error||'خطا در ارتباط با کارساز');e.status=res.status;e.data=j;throw e}
+    return j;
+  }finally{end&&end()}
 }
 const OFFC='offline-poems';
+/* دانلود شعر: در IndexedDB (فشرده) نگه‌داری می‌شود؛ نسخه‌های قدیمی در Cache Storage هم خوانده می‌شوند */
 const OFF={
-  url:id=>API+'/poem/'+id+POEM_Q,
-  urls(id){const q='/poem/'+id+POEM_Q,a=[API+q];[String(CFG.DATA_API||'').replace(/\/$/,''),WORKER_API].forEach(b=>{if(b&&!a.includes(b+q))a.push(b+q)});return a},
-  async has(id){try{const c=await caches.open(OFFC);for(const u of this.urls(id))if(await c.match(u))return true;return false}catch{return false}},
-  async save(id){const c=await caches.open(OFFC);await c.add(this.url(id))},
-  async remove(id){try{const c=await caches.open(OFFC);for(const u of this.urls(id))await c.delete(u)}catch{}},
-  async count(){try{const ks=await (await caches.open(OFFC)).keys();return new Set(ks.map(k=>(k.url.match(/\/poem\/(\d+)/)||[])[1]||k.url)).size}catch{return 0}},
-  async clear(){try{await caches.delete(OFFC)}catch{}}
+  legacyUrls(id){const q='/poem/'+id+POEM_Q,a=[API+q];[String(CFG.DATA_API||'').replace(/\/$/,''),WORKER_API].forEach(b=>{if(b&&!a.includes(b+q))a.push(b+q)});return a},
+  async legacyHas(id){try{const c=await caches.open(OFFC);for(const u of this.legacyUrls(id))if(await c.match(u))return true}catch{}return false},
+  async has(id){return (await LS.hasPoem(+id))||(await this.legacyHas(id))},
+  async save(id){
+    const path='/poem/'+id+POEM_Q;
+    const p=cache.get(path)||await fetchJson(path,false,true);
+    if(!(await LS.putPoem(p)))throw new Error('save');
+  },
+  async remove(id){
+    await LS.delPoem(+id);
+    try{const c=await caches.open(OFFC);for(const u of this.legacyUrls(id))await c.delete(u)}catch{}
+  },
+  async count(){
+    let n=await LS.countPoems(),m=0;
+    try{const ks=await (await caches.open(OFFC)).keys();m=new Set(ks.map(k=>(k.url.match(/\/poem\/(\d+)/)||[])[1]||k.url)).size}catch{}
+    return n+m;
+  },
+  async clear(){await LS.clearPoems();try{await caches.delete(OFFC)}catch{}}
 };
+/* دانلود خودکار همهٔ شعرها (با نصب برنامک)؛ ادامه‌پذیر و با رعایت فضای دستگاه */
+const DL=(()=>{
+  const S={run:false,done:0,total:0,poets:0,poetsDone:0,poet:'',err:'',finished:false};
+  const subs=new Set(),emit=()=>subs.forEach(f=>{try{f(S)}catch{}});
+  const lsGet=k=>{try{return localStorage.getItem(k)}catch{return null}},lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
+  const isOn=()=>lsGet('gj-autodl')!=='0';
+  const setOn=v=>lsSet('gj-autodl',v?'1':'0');
+  const FAMOUS=['حافظ','سعدی','مولوی','فردوسی','خیام','عطار','نظامی','صائب','ایرج','شهریار','سنایی','جامی','انوری','خاقانی','بیدل','سهراب','فروغ','نیما','پروین','رودکی','ناصرخسرو','باباطاهر','وحشی','عراقی','اوحدی'];
+  let stopFlag=false;
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  async function quotaOk(){try{const e=await navigator.storage.estimate();if(e&&e.quota&&e.usage/e.quota>.9)return false}catch{}return true}
+  async function waitNet(){
+    S.err='wait';emit();
+    for(let i=0;i<40&&!stopFlag;i++){await sleep(i<3?2000:15000);if(navigator.onLine)break}
+    if(S.err==='wait')S.err='';emit();return !stopFlag;
+  }
+  async function batch(ids){
+    let i=0,ok=true,bad=0;
+    const worker=async()=>{
+      while(i<ids.length&&!stopFlag&&S.err!=='full'){
+        const id=ids[i++];
+        if(await LS.hasPoem(id)){S.done++;continue}
+        let got=false;
+        for(let a=0;a<3&&!got&&!stopFlag;a++){
+          try{const r=await dfetch('/poem/'+id+POEM_Q,false,true);if(!r.ok)throw 0;got=await LS.putPoem(await r.json())}
+          catch{await sleep(500*(a+1))}
+        }
+        if(got){S.done++;bad=0}else{ok=false;if(++bad>=6){bad=0;await waitNet()}}
+        if(S.done%40===0){emit();if(!(await quotaOk())){S.err='full';return}}else if(S.done%6===0)emit();
+      }
+    };
+    await Promise.all(Array.from({length:5},worker));
+    return ok;
+  }
+  async function doPoet(pt){
+    let allOk=true;const stack=[[pt.rootCatId,0]];
+    while(stack.length&&!stopFlag&&S.err!=='full'){
+      const [cid,tries]=stack.pop();
+      let d;
+      try{d=await get('/cat/'+cid+'?poems=true&mainSections=false',false,true)}
+      catch{if(tries<2){await waitNet();stack.push([cid,tries+1])}else allOk=false;continue}
+      const c=d.cat||d,ids=(c.poems||[]).map(x=>x.id);
+      S.total+=ids.length;
+      const kids=(c.children||[]).map(x=>x.id);for(let k=kids.length-1;k>=0;k--)stack.push([kids[k],0]);
+      if(ids.length&&!(await batch(ids)))allOk=false;
+    }
+    return allOk&&!stopFlag&&S.err!=='full';
+  }
+  async function start(manual){
+    if(S.run)return;
+    try{if(!manual&&navigator.connection&&navigator.connection.saveData)return}catch{}
+    S.run=true;stopFlag=false;S.err='';S.finished=false;lsSet('gj-dl-armed','1');emit();
+    try{
+      try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch{}
+      const poets=await get('/poets',false,true);
+      const doneSet=new Set(JSON.parse(lsGet('gj-dl-poets')||'[]'));
+      const rank=p=>{const n=norm((p.name||'')+' '+(p.nickname||''));const i=FAMOUS.findIndex(f=>n.includes(norm(f)));return i<0?999:i};
+      const list=poets.slice().sort((a,b)=>rank(a)-rank(b));
+      S.poets=list.length;S.poetsDone=list.filter(p=>doneSet.has(p.id)).length;emit();
+      for(const pt of list){
+        if(stopFlag||S.err==='full')break;
+        if(doneSet.has(pt.id))continue;
+        S.poet=pt.name;emit();
+        const ok=await doPoet(pt);
+        if(ok){doneSet.add(pt.id);lsSet('gj-dl-poets',JSON.stringify([...doneSet]));S.poetsDone++}
+        emit();
+      }
+      if(!stopFlag&&!S.err&&S.poetsDone>=S.poets&&S.poets>0)S.finished=true;
+    }catch{if(!S.err)S.err='net'}
+    S.run=false;S.poet='';emit();
+  }
+  const stop=()=>{stopFlag=true};
+  const reset=()=>{S.done=0;S.total=0;S.poetsDone=0;S.finished=false;S.err='';try{localStorage.removeItem('gj-dl-poets');localStorage.removeItem('gj-dl-armed')}catch{}emit()};
+  const standalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}catch{return false}};
+  return {S,subs,start,stop,reset,isOn,setOn,standalone,armed:()=>lsGet('gj-dl-armed')==='1'};
+})();
 const HIST={
   get(){try{const o=JSON.parse(localStorage.getItem('gj-hist')||'{}');return {views:o.views||[],searches:o.searches||[]}}catch{return {views:[],searches:[]}}},
   put(o){try{localStorage.setItem('gj-hist',JSON.stringify(o))}catch{}syncPush()},
@@ -3140,6 +3481,8 @@ function formView(draw){
   const pw=h('input',{class:'inp',type:'password',dir:'ltr',autocomplete:'current-password',placeholder:'Password'});
   const show=h('input',{type:'checkbox'});show.onchange=()=>{pw.type=show.checked?'text':'password'};
   const err=h('div',{class:'err'});
+  const code=h('input',{class:'inp',type:'password',dir:'ltr',autocomplete:'off',placeholder:'کد مدیر'});
+  const codeF=h('label',{class:'field',style:'display:none'},h('small',{text:'کد مدیر (فقط برای ساخت حساب مدیر)'}),code);
   const rules=h('ul',{class:'rules'},PW_RULES.map(([t])=>h('li',{text:t})));
   const paintRules=()=>PW_RULES.forEach(([,f],i)=>rules.children[i].classList.toggle('ok',f(pw.value)));
   pw.addEventListener('input',paintRules);
@@ -3156,16 +3499,16 @@ function formView(draw){
     const f=first.value.trim(),l=last.value.trim();
     if(f.length<2||l.length<2){err.textContent='نام و نام خانوادگی را وارد کنید.';return}
     if(mode==='register'&&!PW_RULES.every(([,fn])=>fn(pw.value))){err.textContent='رمز عبور همهٔ شرط‌ها را ندارد.';return}
-    submit.disabled=true;
+    submit.disabled=true;submit.classList.add('busy');
     try{
       const body={first:f,last:l,password:pw.value};
-      if(mode==='register')body.data=localData();
+      if(mode==='register'){body.data=localData();if(codeF.style.display!=='none')body.adminCode=code.value}
       const r=await api(mode==='login'?'/api/login':'/api/register',{method:'POST',body});
       setToken(r.token);ACCT.profile=r.profile;
       if(mode==='login'){applyData(r.data,true);syncPush()}
       toast(mode==='login'?'وارد شدید':'حساب شما ساخته شد');draw();
-    }catch(e){err.textContent=e.message||'خطا'}
-    submit.disabled=false;
+    }catch(e){err.textContent=e.message||'خطا';if(e.data&&e.data.needCode)codeF.style.display=''}
+    submit.disabled=false;submit.classList.remove('busy');
   };
   return [h('h2',{text:'حساب کاربری'}),
     h('p',{class:'muted',style:'margin-bottom:10px',text:'با نام، نام خانوادگی و رمز عبور وارد شوید تا دلخواه‌ها و تنظیمات شما ذخیره شود.'}),
@@ -3173,9 +3516,9 @@ function formView(draw){
     h('label',{class:'field'},h('small',{text:'نام'}),first),h('label',{class:'field'},h('small',{text:'نام خانوادگی'}),last),
     h('label',{class:'field'},h('small',{text:'رمز عبور'}),pw),
     h('label',{class:'note',style:'display:flex;gap:6px;align-items:center;margin-bottom:6px'},show,'نمایش رمز'),
-    rules,err,submit];
+    rules,codeF,err,submit];
 }
-const NT_TXT={reply:n=>n.by+' به حاشیهٔ شما پاسخ داد',like:n=>n.by+' حاشیهٔ شما را پسندید',dislike:n=>n.by+' حاشیهٔ شما را نپسندید',report:n=>'گزارش از '+n.by+': «'+(n.text||'')+'»','auto-flag':n=>'حاشیهٔ مشکوک (تشخیص خودکار): «'+(n.text||'')+'»'};
+const NT_TXT={admin:n=>n.text||'پیام مدیر',reply:n=>n.by+' به حاشیهٔ شما پاسخ داد',like:n=>n.by+' حاشیهٔ شما را پسندید',dislike:n=>n.by+' حاشیهٔ شما را نپسندید',report:n=>'گزارش از '+n.by+': «'+(n.text||'')+'»','auto-flag':n=>'حاشیهٔ مشکوک (تشخیص خودکار): «'+(n.text||'')+'»'};
 function notifBox(){
   const box=h('div',{style:'margin:10px 0'});
   api('/api/notifications').then(r=>{
@@ -3184,17 +3527,72 @@ function notifBox(){
   }).catch(()=>{});
   return box;
 }
-function banBox(){
-  const f=h('input',{placeholder:'نام'}),l=h('input',{placeholder:'نام خانوادگی'});
-  const go=ban=>api('/api/admin/ban',{method:'POST',body:{first:f.value,last:l.value,ban}}).then(()=>toast(ban?'کاربر محروم شد':'محرومیت برداشته شد')).catch(e=>toast(e.message));
-  return h('div',{class:'psearch'},h('small',{class:'muted',text:'مدیریت:'}),f,l,h('button',{class:'btn',type:'button',text:'محروم‌کردن',onclick:()=>go(true)}),h('button',{class:'btn',type:'button',text:'رفع محرومیت',onclick:()=>go(false)}));
+const ADM_ACT={register:'ساخت حساب',login:'ورود','login-fail':'ورود ناموفق',note:'حاشیه',match:'مشاعره',ban:'محدودیت',unban:'رفع محدودیت',logout:'خروج'};
+const ADM_SC=[['notes','حاشیه‌ها'],['match','مشاعره'],['ai','جستجوی معنایی و ابزارهای هوشمند']];
+const agoFa=t=>{const m=Math.max(0,Math.round((Date.now()-t)/6e4));if(m<1)return 'همین الان';if(m<60)return toFa(m)+' دقیقه پیش';const x=Math.round(m/60);if(x<24)return toFa(x)+' ساعت پیش';return toFa(Math.round(x/24))+' روز پیش'};
+function adminPanel(){
+  const q=h('input',{class:'inp',type:'search',placeholder:'جستجوی کاربر…','aria-label':'جستجوی کاربر'}),list=h('div',{class:'ulist'}),more=h('div',{class:'more'}),cnt=h('small',{class:'muted'});
+  let users=[],cursor=null,busy=false,open=null;
+  const banTxt=b=>b?(b.scopes.includes('login')?'کل سایت':b.scopes.map(x=>(ADM_SC.find(y=>y[0]===x)||[0,x])[1]).join('، '))+(b.until?' · '+toFa(Math.max(1,Math.ceil((b.until-Date.now())/36e5)))+' ساعت':' · دائم'):'';
+  function card(u){
+    const isOpen=open===u.key;
+    const head=h('button',{type:'button',class:'uhead','aria-expanded':String(isOpen),onclick:()=>{open=isOpen?null:u.key;draw()}},
+      h('b',{text:u.first+' '+u.last}),
+      u.admin?h('span',{class:'badge ok',text:'مدیر'}):null,
+      u.ban?h('span',{class:'badge bad',text:'محدود'}):null,
+      h('small',{class:'muted',text:'آخرین فعالیت: '+agoFa(u.seen)}));
+    const c=h('div',{class:'ucard'+(isOpen?' open':'')},head);
+    if(!isOpen)return c;
+    const body=h('div',{class:'ubody'});
+    body.append(h('ul',{class:'uacts'},...(u.acts.length?u.acts.map(a=>h('li',{},h('b',{text:ADM_ACT[a.type]||a.type}),' — '+(a.text||'')+' ',h('small',{class:'muted',text:agoFa(a.t)}))):[h('li',{class:'muted',text:'فعالیتی ثبت نشده است.'})])));
+    body.append(h('small',{class:'muted',text:`مشاعره: ${toFa(u.stats.played)} · برد: ${toFa(u.stats.won)} · عضویت: ${new Date(u.created).toLocaleDateString('fa-IR')}`}));
+    if(u.ban)body.append(h('p',{class:'err',style:'margin:6px 0',text:'محدودیت فعلی: '+banTxt(u.ban)+(u.ban.reason?' — '+u.ban.reason:'')}));
+    if(!u.admin){
+      const all=h('input',{type:'checkbox'}),boxes=ADM_SC.map(([k])=>h('input',{type:'checkbox','data-k':k}));
+      const sync=()=>boxes.forEach(b=>{b.disabled=all.checked;if(all.checked)b.checked=true});all.onchange=sync;
+      const dur=h('select',{class:'inp','aria-label':'مدت محدودیت'},[[1,'یک ساعت'],[24,'یک روز'],[168,'یک هفته'],[720,'سی روز'],[0,'دائم']].map(([v,t])=>h('option',{value:v,text:t})));
+      const why=h('input',{class:'inp',placeholder:'دلیل (اختیاری)',maxlength:'120'});
+      const act=async(path,payload,msg)=>{try{const r=await api(path,{method:'POST',body:Object.assign({key:u.key},payload)});if(path==='/api/admin/ban')u.ban=r.ban;if(path==='/api/admin/delete-user')users=users.filter(x=>x.key!==u.key);toast(msg);draw()}catch(e){toast(e.message)}};
+      const msgIn=h('input',{class:'inp',placeholder:'پیام برای این کاربر…',maxlength:'200'});
+      let delArm=0;
+      body.append(h('div',{class:'ctl'},h('small',{class:'muted',text:'محروم‌کردن از:'}),
+        h('label',{class:'ck'},all,'کل سایت (ورود به حساب)'),
+        ...ADM_SC.map(([k,t],i)=>h('label',{class:'ck'},boxes[i],t)),
+        h('div',{class:'row2x'},dur,why),
+        h('div',{class:'row2x'},
+          h('button',{class:'btn danger',type:'button',text:'اعمال محدودیت',onclick:()=>{const sc=all.checked?['login']:boxes.filter(b=>b.checked).map(b=>b.dataset.k);if(!sc.length)return toast('دست‌کم یک بخش را انتخاب کنید');act('/api/admin/ban',{scopes:sc,hours:+dur.value,reason:why.value},'محدودیت اعمال شد')}}),
+          u.ban?h('button',{class:'btn',type:'button',text:'رفع محدودیت',onclick:()=>act('/api/admin/ban',{ban:false},'محدودیت برداشته شد')}):null),
+        h('div',{class:'row2x'},msgIn,h('button',{class:'btn',type:'button',text:'ارسال پیام',onclick:()=>{if(!msgIn.value.trim())return;act('/api/admin/message',{text:msgIn.value},'پیام ارسال شد')}})),
+        h('div',{class:'row2x'},
+          h('button',{class:'btn',type:'button',text:'خروج اجباری از همهٔ دستگاه‌ها',onclick:()=>act('/api/admin/force-logout',{},'کاربر از همهٔ دستگاه‌ها خارج شد')}),
+          h('button',{class:'btn danger',type:'button',text:'حذف حساب',onclick:e=>{const b=e.currentTarget;if(!delArm){delArm=setTimeout(()=>{delArm=0;b.textContent='حذف حساب'},4000);b.textContent='برای تأیید دوباره بزنید';return}clearTimeout(delArm);act('/api/admin/delete-user',{},'حساب حذف شد')}}))));
+    }
+    c.append(body);return c;
+  }
+  function draw(){
+    const t=norm(q.value);
+    const rows=users.filter(u=>!t||norm(u.first+' '+u.last).includes(t)).sort((a,b)=>b.seen-a.seen);
+    list.replaceChildren(...rows.map(card));
+    if(!rows.length)list.append(h('p',{class:'muted',text:busy?'در حال دریافت فهرست کاربران…':'کاربری پیدا نشد.'}));
+    cnt.textContent=toFa(users.length)+' کاربر'+(users.filter(u=>u.ban).length?' · '+toFa(users.filter(u=>u.ban).length)+' محدود':'');
+    more.replaceChildren(cursor?h('button',{class:'btn',type:'button',text:'نمایش بیشتر',onclick:load}):null);
+  }
+  async function load(){
+    if(busy)return;busy=true;draw();
+    try{const r=await api('/api/admin/users'+(cursor?'?cursor='+encodeURIComponent(cursor):''));users=users.concat(r.users);cursor=r.cursor}
+    catch(e){toast(e.message)}
+    busy=false;draw();
+  }
+  q.addEventListener('input',draw);
+  load();
+  return h('div',{class:'admin'},h('div',{class:'sec-h'},h('h2',{text:'مدیریت کاربران'}),cnt),q,list,more);
 }
 function loggedView(draw){
   const pr=ACCT.profile,st=pr.stats||{played:0,won:0};
   return [h('h2',{text:'حساب کاربری'}),
     h('p',{style:'font-size:1.1rem',text:`${pr.first} ${pr.last}`}),
     h('p',{class:'note',style:'margin:4px 0 12px',text:`مشاعره‌ها: ${toFa(st.played)} · برد: ${toFa(st.won)} — دلخواه‌ها و تنظیمات شما خودکار ذخیره می‌شود.`}),
-    notifBox(),pr.admin?banBox():'',
+    notifBox(),pr.ban?h('p',{class:'err',style:'margin:8px 0',text:'دسترسی شما به بخشی از سایت محدود شده است'+(pr.ban.reason?' — '+pr.ban.reason:'')+'.'}):'',pr.admin?adminPanel():'',
     h('button',{class:'btn',type:'button',text:'خروج از حساب',onclick:()=>{api('/api/logout',{method:'POST'}).catch(()=>{});setToken('');ACCT.profile=null;toast('از حساب خارج شدید');draw()}})];
 }
 function acctBox(){
@@ -3224,11 +3622,13 @@ const numOf=(o,ks)=>{for(const k of ks){const v=o&&o[k];if(v!=null&&v!==''&&Numb
 function placeOf(pt){
   const name=String(pt.birthPlace||pt.birthPlaceName||'').trim();
   let lat=numOf(pt,['birthPlaceLatitude','latitude','lat']),lon=numOf(pt,['birthPlaceLongitude','longitude','lon','lng']);
-  if(lat==null||lon==null){
+  const valid=(la,lo)=>la!=null&&lo!=null&&Math.abs(la)<=85&&Math.abs(lo)<=180&&!(la===0&&lo===0);
+  if(!valid(lat,lon)){
     const hit=name&&Object.keys(CITIES).find(c=>name.includes(c));
     if(hit){[lat,lon]=CITIES[hit]}else return null;
   }
-  return {name:name||'نقطهٔ نامشخص',lat,lon};
+  if(!name||/نامشخص|نامعلوم/.test(name))return null;
+  return {name,lat,lon};
 }
 async function loadPlaces(poets,onProg){
   let cache={};try{cache=JSON.parse(localStorage.getItem('gj-places')||'{}')}catch{}
@@ -3257,80 +3657,164 @@ async function loadPlaces(poets,onProg){
 async function mapPage(tok){
   document.title='نقشهٔ زادگاه سخنوران | '+SITE;
   const note=h('p',{class:'note gl-note',text:'در حال گردآوری زادگاه‌ها…'});
-  const cv=h('canvas',{'aria-label':'کرهٔ زمین با زادگاه سخنوران',style:'width:100%;max-width:460px;aspect-ratio:1;touch-action:none;display:block;margin:0 auto;cursor:grab'});
+  const wrap=h('div',{class:'mapwrap'});
+  const cv=h('canvas',{'aria-label':'نقشهٔ زادگاه سخنوران؛ با دو انگشت زوم کنید',style:'touch-action:none'});
+  wrap.append(cv);
   const sel=h('div',{class:'gl-sel'}),list=h('div',{});
-  const zin=h('button',{class:'btn',type:'button',text:'+','aria-label':'نزدیک‌تر'}),zout=h('button',{class:'btn',type:'button',text:'−','aria-label':'دورتر'});
-  view.replaceChildren(h('h1',{text:'نقشهٔ زادگاه سخنوران'}),note,cv,h('div',{style:'display:flex;gap:8px;justify-content:center;margin:8px 0'},zout,zin),sel,list);
+  view.replaceChildren(h('h1',{text:'نقشهٔ زادگاه سخنوران'}),note,wrap,sel,list);
   const poets=await getPoets().catch(()=>[]);
   if(tok!==render.tok)return;
   const places=await loadPlaces(poets,(a,n)=>{if(tok===render.tok)note.textContent='گردآوری زادگاه‌ها: '+toFa(a)+' از '+toFa(n)});
   if(tok!==render.tok)return;
-  if(!places.length){note.textContent='داده‌ای دربارهٔ زادگاه سخنوران پیدا نشد.';cv.remove();return}
-  note.textContent=toFa(places.reduce((a,p)=>a+p.poets.length,0))+' سخنور در '+toFa(places.length)+' جا؛ کره را بکشید و روی نقطه‌ها بزنید.';
+  if(!places.length){note.textContent='داده‌ای دربارهٔ زادگاه سخنوران پیدا نشد.';wrap.remove();return}
+  note.textContent=toFa(places.reduce((a,p)=>a+p.poets.length,0))+' سخنور در '+toFa(places.length)+' شهر و آبادی؛ با دو انگشت (یا چرخ ماوس) زوم کنید و روی نقطه‌ها بزنید.';
+  let focus=null;
   const showSel=g=>{
     sel.replaceChildren(h('b',{text:g.name}),h('div',{class:'chips'},...g.poets.map(p=>h('a',{class:'btn',href:'#/cat/'+p.rootCatId,text:p.name}))));
   };
-  list.replaceChildren(h('h2',{text:'زادگاه‌ها'}),...[...places].sort((a,b)=>b.poets.length-a.poets.length).map(g=>h('p',{style:'margin:8px 0'},h('b',{text:g.name+' ('+toFa(g.poets.length)+') ',style:'cursor:pointer',onclick:()=>{showSel(g);focus=g;rot.lon=g.lon;rot.lat=g.lat;cv.scrollIntoView({block:'center',behavior:'smooth'})}}),...g.poets.slice(0,6).map(p=>h('a',{href:'#/cat/'+p.rootCatId,text:p.name+'، '})))));
-  // --- رندر کره ---
+  const goTo=(g,z)=>{focus=g;showSel(g);cam.tlon=g.lon;cam.tlat=g.lat;if(z)cam.tz=Math.max(cam.tz,z)};
+  list.replaceChildren(h('h2',{text:'زادگاه‌ها'}),...[...places].sort((a,b)=>b.poets.length-a.poets.length).map(g=>h('p',{style:'margin:8px 0'},h('b',{text:g.name+' ('+toFa(g.poets.length)+') ',style:'cursor:pointer',onclick:()=>{goTo(g,9);cv.scrollIntoView({block:'center',behavior:'smooth'})}}),...g.poets.slice(0,6).map(p=>h('a',{href:'#/cat/'+p.rootCatId,text:p.name+'، '})))));
+
   const cs=getComputedStyle(document.documentElement),col=n=>cs.getPropertyValue(n).trim()||'#c98512';
-  const ink=col('--ink'),gold=col('--saffron'),ctx2=cv.getContext('2d');
-  const rot={lon:53,lat:30},vel={x:0,y:0};let zoom=1,focus=null,drag=null,moved=0,idle=true;
-  const D=Math.PI/180;
+  const ink=col('--ink'),gold=col('--saffron'),g2=cv.getContext('2d');
+  const D=Math.PI/180,ZMIN=1.85,ZMAX=17.5;
+  /* دوربین: مرکز (lon,lat) و زوم z (هم‌خوان با زوم کاشی‌های نقشه). z کم ⇒ کرهٔ زمین؛ z زیاد ⇒ نقشهٔ تخت تا سطح شهر */
+  const cam={lon:53,lat:30,z:1.95,tlon:53,tlat:30,tz:1.95};
+  const vel={x:0,y:0};let drag=null,moved=0,idleT=true,W=0,dpr=1;
+  const ptrs=new Map();let pinch=null;
+  const size=()=>{const r=cv.getBoundingClientRect();dpr=Math.min(2,devicePixelRatio||1);const w=Math.max(220,Math.round(r.width));const h2=Math.round(r.height)||w;if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h2*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h2*dpr)}W=w;return [w,h2]};
+  const Rg=z=>256*Math.pow(2,z)/(2*Math.PI);
+  const mercY=lat=>{const f=Math.max(-85.05,Math.min(85.05,lat))*D;return (1-Math.log(Math.tan(f)+1/Math.cos(f))/Math.PI)/2};
+  const invMercY=y=>Math.atan(Math.sinh(Math.PI*(1-2*y)))/D;
+  /* کره */
   const proj=(lat,lon,R)=>{
-    const p=lat*D,l=(lon-rot.lon)*D,p0=rot.lat*D;
+    const p=lat*D,l=(lon-cam.lon)*D,p0=cam.lat*D;
     const x=Math.cos(p)*Math.sin(l),y=Math.cos(p0)*Math.sin(p)-Math.sin(p0)*Math.cos(p)*Math.cos(l),z=Math.sin(p0)*Math.sin(p)+Math.cos(p0)*Math.cos(p)*Math.cos(l);
     return {x:x*R,y:-y*R,z};
   };
-  const size=()=>{const r=cv.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);const w=Math.max(200,Math.round(r.width*dpr));if(cv.width!==w){cv.width=w;cv.height=w}return w};
+  /* نقشهٔ تخت (مرکاتور) */
+  const flat=(lat,lon,N,cx,cy)=>({x:((lon+180)/360-cx)*N,y:(mercY(lat)-cy)*N});
+  /* کاشی‌ها */
+  const tiles=new Map();
+  const tile=(z,x,y)=>{
+    const k=z+'/'+x+'/'+y;let t=tiles.get(k);
+    if(!t){t={img:new Image(),ok:false,t:0};t.img.decoding='async';t.img.onload=()=>{t.ok=true;t.t=performance.now()};t.img.onerror=()=>{t.err=true};t.img.src=`https://tile.openstreetmap.org/${z}/${x}/${y}.png`;tiles.set(k,t);if(tiles.size>260){const it=tiles.keys();for(let i=0;i<60;i++)tiles.delete(it.next().value)}}
+    return t;
+  };
   let hits=[];
   const draw=()=>{
-    const W=size(),R=W*0.44*zoom,c=W/2;
-    ctx2.clearRect(0,0,W,W);ctx2.save();ctx2.translate(c,c);
-    const gr=ctx2.createRadialGradient(-R*.3,-R*.3,R*.1,0,0,R);gr.addColorStop(0,'rgba(120,150,190,.28)');gr.addColorStop(1,'rgba(30,50,90,.38)');
-    ctx2.beginPath();ctx2.arc(0,0,R,0,7);ctx2.fillStyle=gr;ctx2.fill();ctx2.lineWidth=W/300;ctx2.strokeStyle=ink;ctx2.globalAlpha=.55;ctx2.stroke();
-    ctx2.globalAlpha=.22;ctx2.lineWidth=W/500;ctx2.strokeStyle=ink;
-    const line=pts=>{let on=false;ctx2.beginPath();for(const q of pts){if(q.z>0){on?ctx2.lineTo(q.x,q.y):ctx2.moveTo(q.x,q.y);on=true}else on=false}ctx2.stroke()};
-    for(let la=-60;la<=60;la+=30){const a=[];for(let lo=-180;lo<=180;lo+=6)a.push(proj(la,lo,R));line(a)}
-    for(let lo=-180;lo<180;lo+=30){const a=[];for(let la=-90;la<=90;la+=6)a.push(proj(la,lo,R));line(a)}
-    ctx2.globalAlpha=1;
-    const pts=places.map(g=>({g,...proj(g.lat,g.lon,R)})).filter(q=>q.z>0.02).sort((a,b)=>a.z-b.z);
+    const [w,hh]=size();
+    g2.setTransform(dpr,0,0,dpr,0,0);g2.clearRect(0,0,w,hh);
+    const gA=Math.max(0,Math.min(1,(3.9-cam.z)/1.1)),fA=1-gA;
     hits=[];
-    for(const q of pts){
-      const r=(3+Math.min(8,Math.sqrt(q.g.poets.length)*1.7))*W/460;
-      ctx2.beginPath();ctx2.arc(q.x,q.y,r,0,7);ctx2.fillStyle=gold;ctx2.globalAlpha=q.g===focus?1:.85;ctx2.fill();
-      if(q.g===focus){ctx2.lineWidth=2*W/460;ctx2.strokeStyle=ink;ctx2.stroke()}
-      hits.push({x:q.x+c,y:q.y+c,r:Math.max(r,12*W/460),g:q.g});
+    if(gA>0){
+      g2.save();g2.globalAlpha=gA;g2.translate(w/2,hh/2);
+      const R=Rg(cam.z);
+      const gr=g2.createRadialGradient(-R*.3,-R*.3,R*.1,0,0,R);gr.addColorStop(0,'#2a9aa0');gr.addColorStop(.6,'#12707a');gr.addColorStop(1,'#073a4a');
+      g2.beginPath();g2.arc(0,0,R,0,7);g2.fillStyle=gr;g2.fill();
+      g2.save();g2.beginPath();g2.arc(0,0,R,0,7);g2.clip();
+      g2.fillStyle='#ead6a0';g2.strokeStyle='rgba(120,90,30,.6)';g2.lineWidth=1;
+      const p0=cam.lat*D;
+      for(const poly of LAND){
+        let any=false;
+        const pts=poly.map(([lo,la])=>{
+          const f=la*D,l=(lo-cam.lon)*D;
+          const x=Math.cos(f)*Math.sin(l),y=Math.cos(p0)*Math.sin(f)-Math.sin(p0)*Math.cos(f)*Math.cos(l),z=Math.sin(p0)*Math.sin(f)+Math.cos(p0)*Math.cos(f)*Math.cos(l);
+          if(z>0)any=true;
+          if(z>=0)return [x,-y];
+          const m=Math.hypot(x,y)||1;return [x/m,-y/m];
+        });
+        if(!any)continue;
+        g2.beginPath();pts.forEach(([x,y],i)=>i?g2.lineTo(x*R,y*R):g2.moveTo(x*R,y*R));g2.closePath();g2.fill();g2.stroke();
+      }
+      g2.globalAlpha=gA*.2;g2.lineWidth=.8;g2.strokeStyle='#fff';
+      const line=pts=>{let on=false;g2.beginPath();for(const q of pts){if(q.z>0){on?g2.lineTo(q.x,q.y):g2.moveTo(q.x,q.y);on=true}else on=false}g2.stroke()};
+      for(let la=-60;la<=60;la+=30){const a=[];for(let lo=-180;lo<=180;lo+=6)a.push(proj(la,lo,R));line(a)}
+      for(let lo=-180;lo<180;lo+=30){const a=[];for(let la=-90;la<=90;la+=6)a.push(proj(la,lo,R))}
+      g2.globalAlpha=gA;
+      const sh=g2.createRadialGradient(-R*.32,-R*.36,R*.15,0,0,R);sh.addColorStop(0,'rgba(255,255,255,.18)');sh.addColorStop(.62,'rgba(0,0,0,0)');sh.addColorStop(1,'rgba(0,18,28,.55)');
+      g2.fillStyle=sh;g2.fillRect(-R,-R,2*R,2*R);
+      g2.restore();
+      g2.beginPath();g2.arc(0,0,R,0,7);g2.lineWidth=2.5;g2.strokeStyle='rgba(150,235,225,.55)';g2.stroke();
+      const pts=places.map(g=>({g,...proj(g.lat,g.lon,R)})).filter(q=>q.z>0.02).sort((a,b)=>a.z-b.z);
+      for(const q of pts){
+        const r=3+Math.min(7,Math.sqrt(q.g.poets.length)*1.6);
+        g2.beginPath();g2.arc(q.x,q.y,r,0,7);g2.fillStyle=gold;g2.globalAlpha=gA*(q.g===focus?1:.9);g2.fill();g2.lineWidth=1.5;g2.strokeStyle='#3a2a08';g2.stroke();
+        hits.push({x:q.x+w/2,y:q.y+hh/2,r:Math.max(r+4,13),g:q.g});
+      }
+      g2.restore();
     }
-    ctx2.globalAlpha=1;
-    if(focus){const q=proj(focus.lat,focus.lon,R);if(q.z>0){ctx2.font=`${Math.round(W/26)}px Vazirmatn,Tahoma,sans-serif`;ctx2.fillStyle=ink;ctx2.textAlign='center';ctx2.fillText(focus.name,q.x,q.y-W/36)}}
-    ctx2.restore();
+    if(fA>0){
+      g2.save();g2.globalAlpha=fA;
+      const z=cam.z,tz=Math.min(18,Math.floor(z)),sc=Math.pow(2,z-tz),N=256*Math.pow(2,z),n=Math.pow(2,tz);
+      const cx=(cam.lon+180)/360,cy=mercY(cam.lat);
+      g2.fillStyle='#bcd6cf';g2.fillRect(0,0,w,hh);
+      const ts=256*sc,x0=Math.floor((cx*n)-(w/2)/ts),x1=Math.floor((cx*n)+(w/2)/ts),y0=Math.max(0,Math.floor((cy*n)-(hh/2)/ts)),y1=Math.min(n-1,Math.floor((cy*n)+(hh/2)/ts));
+      for(let ty=y0;ty<=y1;ty++)for(let tx=x0;tx<=x1;tx++){
+        const wx=((tx%n)+n)%n,t=tile(tz,wx,ty);
+        const px=w/2+(tx-cx*n)*ts,py=hh/2+(ty-cy*n)*ts;
+        if(t.ok){const a=Math.min(1,(performance.now()-t.t)/260);g2.globalAlpha=fA*a;g2.drawImage(t.img,px,py,ts+.6,ts+.6);g2.globalAlpha=fA}
+      }
+      g2.font='10px sans-serif';g2.fillStyle='rgba(0,0,0,.6)';g2.textAlign='left';g2.fillText('© OpenStreetMap',6,hh-6);
+      const labels=cam.z>=5.2;
+      for(const g of places){
+        const q=flat(g.lat,g.lon,N,cx,cy),X=w/2+q.x,Y=hh/2+q.y;
+        if(X<-30||X>w+30||Y<-30||Y>hh+30)continue;
+        const r=5+Math.min(8,Math.sqrt(g.poets.length)*1.8);
+        g2.beginPath();g2.arc(X,Y,r,0,7);g2.fillStyle=gold;g2.globalAlpha=fA;g2.fill();g2.lineWidth=2;g2.strokeStyle='#3a2a08';g2.stroke();
+        if(labels||g===focus){g2.font='600 13px Vazirmatn,Tahoma,sans-serif';g2.textAlign='center';g2.lineWidth=3.5;g2.strokeStyle='rgba(255,255,255,.9)';g2.strokeText(g.name,X,Y-r-6);g2.fillStyle='#1a2a2a';g2.fillText(g.name,X,Y-r-6)}
+        hits.push({x:X,y:Y,r:Math.max(r+6,16),g});
+      }
+      g2.restore();
+    }
+    if(gA>0&&focus){const q=proj(focus.lat,focus.lon,Rg(cam.z));if(q.z>0){g2.save();g2.globalAlpha=gA;g2.font='600 13px Vazirmatn,Tahoma,sans-serif';g2.fillStyle=ink;g2.textAlign='center';g2.fillText(focus.name,q.x+w/2,q.y+hh/2-14);g2.restore()}}
+  };
+  const clampCam=()=>{cam.z=Math.max(ZMIN,Math.min(ZMAX,cam.z));cam.lat=Math.max(-80,Math.min(80,cam.lat));cam.lon=((cam.lon+540)%360)-180};
+  const panPx=(dx,dy)=>{
+    if(cam.z<3.4){const R=Rg(cam.z);cam.lon-=dx/R/D;cam.lat+=dy/R/D;vel.x=dx/R/D*.35;vel.y=-dy/R/D*.35}
+    else{const N=256*Math.pow(2,cam.z);let wx=(cam.lon+180)/360*N-dx,wy=mercY(cam.lat)*N-dy;cam.lon=wx/N*360-180;cam.lat=invMercY(wy/N);vel.x=vel.y=0}
   };
   const tick=()=>{
     if(!cv.isConnected||tok!==render.tok)return;
-    if(!drag){
-      rot.lon-=vel.x;rot.lat+=vel.y;vel.x*=.94;vel.y*=.94;
-      if(idle&&!reduced&&!focus)rot.lon+=0.12;
+    if(!drag&&!pinch){
+      if(cam.z<3.4){cam.lon-=vel.x;cam.lat+=vel.y;vel.x*=.94;vel.y*=.94;if(idleT&&!reduced&&!focus&&cam.tz<=cam.z+.01)cam.lon+=.1}
+      const k=reduced?1:.14;
+      if(Math.abs(cam.tz-cam.z)>.002){cam.z+=(cam.tz-cam.z)*k}else cam.z=cam.tz;
+      if(Math.abs(cam.tlon-cam.lon)>.001||Math.abs(cam.tlat-cam.lat)>.001){let dl=cam.tlon-cam.lon;if(dl>180)dl-=360;if(dl<-180)dl+=360;cam.lon+=dl*k;cam.lat+=(cam.tlat-cam.lat)*k}
     }
-    rot.lat=Math.max(-80,Math.min(80,rot.lat));
-    draw();requestAnimationFrame(tick);
+    clampCam();draw();requestAnimationFrame(tick);
   };
-  cv.addEventListener('pointerdown',e=>{cv.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY};moved=0;idle=false;cv.style.cursor='grabbing'});
+  const syncT=()=>{cam.tz=cam.z;cam.tlon=cam.lon;cam.tlat=cam.lat};
+  const dist=()=>{const a=[...ptrs.values()];return Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)};
+  cv.addEventListener('pointerdown',e=>{
+    cv.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});idleT=false;moved=0;vel.x=vel.y=0;
+    if(ptrs.size===2){pinch={d:dist(),z:cam.z};drag=null}else{drag={x:e.clientX,y:e.clientY}}
+    syncT();cv.style.cursor='grabbing';
+  });
   cv.addEventListener('pointermove',e=>{
+    if(!ptrs.has(e.pointerId))return;
+    ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(pinch&&ptrs.size>=2){cam.z=pinch.z+Math.log2(dist()/pinch.d);clampCam();syncT();moved+=10;return}
     if(!drag)return;
-    const R=cv.getBoundingClientRect().width*0.44*zoom,dx=e.clientX-drag.x,dy=e.clientY-drag.y;
-    moved+=Math.abs(dx)+Math.abs(dy);
-    rot.lon-=dx/R/D*0.9;rot.lat+=dy/R/D*0.9;vel.x=dx/R/D*0.25;vel.y=-dy/R/D*0.25;
-    drag={x:e.clientX,y:e.clientY};
+    const dx=e.clientX-drag.x,dy=e.clientY-drag.y;moved+=Math.abs(dx)+Math.abs(dy);
+    panPx(dx,dy);drag={x:e.clientX,y:e.clientY};syncT();
   });
-  cv.addEventListener('pointerup',e=>{
-    cv.style.cursor='grab';drag=null;
-    if(moved<6){
-      const r=cv.getBoundingClientRect(),k=cv.width/r.width,px=(e.clientX-r.left)*k,py=(e.clientY-r.top)*k;
-      let best=null,bd=1e9;for(const q of hits){const d=Math.hypot(q.x-px,q.y-py);if(d<q.r&&d<bd){bd=d;best=q.g}}
-      if(best){focus=best;showSel(best)}
+  const up=e=>{
+    ptrs.delete(e.pointerId);cv.style.cursor='grab';
+    if(ptrs.size<2)pinch=null;
+    if(ptrs.size===1){const r=[...ptrs.values()][0];drag={x:r.x,y:r.y}}
+    if(!ptrs.size){
+      drag=null;
+      if(moved<6&&e.type==='pointerup'){
+        const r=cv.getBoundingClientRect(),px=e.clientX-r.left,py=e.clientY-r.top;
+        let best=null,bd=1e9;for(const q of hits){const d=Math.hypot(q.x-px,q.y-py);if(d<q.r&&d<bd){bd=d;best=q.g}}
+        if(best){goTo(best,cam.z<6?8:0)}
+      }
     }
-  });
-  zin.onclick=()=>{zoom=Math.min(2.2,zoom*1.2)};zout.onclick=()=>{zoom=Math.max(.6,zoom/1.2)};
+  };
+  cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
+  cv.addEventListener('wheel',e=>{e.preventDefault();cam.tz=Math.max(ZMIN,Math.min(ZMAX,cam.tz-e.deltaY*.0022));idleT=false},{passive:false});
+  cv.addEventListener('dblclick',()=>{cam.tz=Math.min(ZMAX,cam.tz+1.2)});
   tick();
 }
 function abjadPage(){
@@ -3338,16 +3822,44 @@ function abjadPage(){
   view.replaceChildren(h('h1',{text:'محاسبه‌گر ابجد',style:'margin-bottom:14px'}),h('section',{class:'secbox glass'},abjadView()));
 }
 function appSection(){
-  const cnt=h('small',{class:'muted'});
-  const upd=()=>OFF.count().then(n=>{cnt.textContent='شعرهای ذخیره‌شده برای برون‌خط: '+toFa(n)});upd();
+  const cnt=h('b',{class:'dlcount'}),st=h('p',{class:'note dlst'}),bar=h('div',{class:'dlbar'},h('i'));
   const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
   const inst=DIP?h('button',{class:'btn',type:'button',text:'نصب برنامک',onclick:async()=>{DIP.prompt();try{await DIP.userChoice}catch{}DIP=null;mePage()}}):
-    h('p',{class:'muted',text:ios?'برای نصب در سافاری: دکمهٔ اشتراک‌گذاری ← «افزودن به صفحهٔ آغاز».':'برای نصب در کروم: از منوی مرورگر گزینهٔ «نصب برنامک» (Install app) را بزنید.'});
+    h('p',{class:'muted',text:ios?'برای نصب در سافاری: دکمهٔ اشتراک‌گذاری ← «افزودن به صفحهٔ آغاز».':'برای نصب در کروم: از منوی مرورگر گزینهٔ «نصب برنامک» (Install app) را بزنید. بعد از نصب، همهٔ شعرها خودکار دانلود می‌شوند.'});
+  const chk=h('input',{type:'checkbox','aria-label':'دانلود خودکار شعرها'});chk.checked=DL.isOn();
+  const sw=h('label',{class:'sw'},chk,h('i'),h('span',{text:'دانلود خودکار شعرها'}));
+  const startBtn=h('button',{class:'btn',type:'button',text:'شروع دانلود همهٔ شعرها',onclick:()=>{if(!DL.isOn()){DL.setOn(true);chk.checked=true}DL.start(true)}});
+  let armDel=0;
+  const delBtn=h('button',{class:'btn danger',type:'button'});
+  const delTxt=()=>{delBtn.textContent=armDel?'برای تأیید دوباره بزنید':'حذف همهٔ شعرهای دانلودشده'};delTxt();
+  delBtn.onclick=async()=>{
+    if(!armDel){armDel=setTimeout(()=>{armDel=0;delTxt()},4000);delTxt();return}
+    clearTimeout(armDel);armDel=0;delTxt();
+    DL.stop();
+    for(let i=0;i<30&&DL.S.run;i++)await new Promise(r=>setTimeout(r,100));
+    await OFF.clear();DL.reset();DL.setOn(false);chk.checked=false;
+    toast('همهٔ شعرهای دانلودشده حذف شد و دانلود خودکار خاموش شد');paint(DL.S);
+  };
+  chk.onchange=()=>{DL.setOn(chk.checked);if(chk.checked){if(DL.standalone()||DL.armed())DL.start(true);else paint(DL.S)}else{DL.stop();paint(DL.S)}};
+  const paint=async S=>{
+    if(!cnt.isConnected&&paint.ready){DL.subs.delete(paint);return}
+    paint.ready=true;
+    const n=await OFF.count();cnt.textContent='شعرهای دانلودشده: '+toFa(n);
+    const pct=S.poets?Math.round(S.poetsDone/S.poets*100):0;
+    bar.firstChild.style.width=(S.finished?100:pct)+'%';bar.classList.toggle('run',S.run&&!S.err);
+    st.textContent=S.err==='full'?'فضای دستگاه رو به پایان است؛ دانلود متوقف شد.':S.err==='wait'?'در انتظار اتصال اینترنت…':S.err==='net'?'دانلود متوقف شد؛ دوباره تلاش می‌کنیم.':
+      S.run?`در حال دانلود… ${S.poet?S.poet+' — ':''}شاعر ${toFa(S.poetsDone)} از ${toFa(S.poets)}`:
+      S.finished?'همهٔ شعرها دانلود شده‌اند و برون‌خط در دسترس‌اند.':
+      DL.isOn()?(DL.standalone()||DL.armed()?'دانلود خودکار روشن است و ادامه پیدا می‌کند.':'روشن است؛ با نصب برنامک به‌طور خودکار آغاز می‌شود.'):'دانلود خودکار خاموش است.';
+    startBtn.style.display=(S.run||S.finished)?'none':'';
+  };
+  DL.subs.add(paint);paint(DL.S);
   const dl=h('button',{class:'btn',type:'button',text:'ذخیرهٔ دلخواه‌ها برای خواندن برون‌خط',onclick:async()=>{
     const a=favs.all();if(!a.length)return toast('هنوز دلخواهی ندارید');
-    let n=0;for(const f of a){try{await OFF.save(f.id);n++;toast('ذخیره شد: '+toFa(n)+' از '+toFa(a.length))}catch{}}upd()}});
-  const clr=h('button',{class:'btn',type:'button',text:'پاک‌کردن شعرهای ذخیره‌شده',onclick:async()=>{await OFF.clear();upd();toast('پاک شد')}});
-  return h('section',{class:'secbox glass'},h('h2',{text:'برنامک و خواندن برون‌خط'}),inst,h('div',{style:'display:flex;gap:8px;flex-wrap:wrap;margin:10px 0'},dl,clr),cnt);
+    let k=0;for(const f of a){try{await OFF.save(f.id);k++;toast('ذخیره شد: '+toFa(k)+' از '+toFa(a.length))}catch{}}paint(DL.S)}});
+  return h('section',{class:'secbox glass'},h('h2',{text:'برنامک و خواندن برون‌خط'}),inst,
+    h('div',{class:'dlrow'},sw,cnt),bar,st,
+    h('div',{style:'display:flex;gap:8px;flex-wrap:wrap;margin:10px 0'},startBtn,dl,delBtn));
 }
 function mePage(sub){
   document.title='تنظیمات و حساب کاربری | '+SITE;
@@ -3385,16 +3897,28 @@ function matchPage(tok){
   runMatch(root,tok);
 }
 const fmtClock=t=>toFa(String(Math.floor(t/60)).padStart(2,'0'))+':'+toFa(String(t%60).padStart(2,'0'));
+function pulseTurn(){
+  if(reduced)return;
+  const d=document.createElement('div');d.className='turnpulse';document.body.appendChild(d);
+  setTimeout(()=>d.remove(),1400);
+  try{navigator.vibrate&&navigator.vibrate(70)}catch{}
+}
 function runMatch(root,tok){
-  let timer=0,ui=null,curKey='';
+  let timer=0,ui=null,curKey='',gen=0,chain=Promise.resolve(),sub=0;
   const ok=()=>tok===render.tok&&document.body.contains(root);
+  /* درخواست‌های بازی پشت‌سرهم و به‌ترتیب فرستاده می‌شوند (انصراف همیشه پیش از شروع بعدی) */
+  const q=fn=>{const r=chain.then(fn,fn);chain=r.catch(()=>{});return r};
   const stopUi=()=>{if(ui&&ui.stop)ui.stop();ui=null};
-  const again=()=>h('button',{class:'btn primary',type:'button',text:'بازی دوباره',onclick:async()=>{await api('/api/match/leave',{method:'POST'}).catch(()=>{});show({status:'none'})}});
+  const halt=()=>{gen++;clearTimeout(timer);sub=0};
+  const swap=el=>{root.replaceChildren(el);el.classList.add('mview')};
+  const leaveNow=()=>{halt();show({status:'none'});q(()=>api('/api/match/leave',{method:'POST',quiet:true})).catch(()=>{})};
+  const again=()=>h('button',{class:'btn primary',type:'button',text:'بازی دوباره',onclick:leaveNow});
   const clock=(el,s)=>{
     const off=s.now-Date.now();
-    const upd=()=>{if(!ok()){clearInterval(iv);return}el.textContent=fmtClock(Math.ceil(Math.max(0,s.deadline-(Date.now()+off))/1000))};
-    const iv=setInterval(upd,500);upd();return iv;
+    const upd=()=>{if(!ok()){clearInterval(iv);return}const t=Math.ceil(Math.max(0,s.deadline-(Date.now()+off))/1000);el.textContent=fmtClock(t);el.classList.toggle('low',t<=10)};
+    const iv=setInterval(upd,250);upd();return iv;
   };
+  const resBox=(s,me)=>h('div',{class:'win',text:s.winner===-1?'مساوی شد':(s.winner===me?'شما برنده شدید!':s.players[1-me].name+' برنده شد')});
 
   function buildWords(s0){
     const timerEl=h('b',{class:'timer'}),status=h('p',{class:'muted'}),res=h('div');
@@ -3403,19 +3927,21 @@ function runMatch(root,tok){
     const el=h('div',{class:'secbox glass'},
       h('div',{class:'vs'},h('span',{text:'شما'}),h('span',{class:'muted',text:'در برابر'}),h('b',{text:s0.players[1-s0.me].name})),
       h('p',{class:'muted',text:'با این کلمه‌ها یک رباعی (چهار مصراع) بسرایید:'}),
-      h('div',{class:'achips',style:'margin:8px 0 10px'},s0.words.map(w=>h('span',{class:'chip on',text:w}))),
+      h('div',{class:'achips',style:'margin:8px 0 10px'},s0.words.map((w,i)=>h('span',{class:'chip on rise',style:'--i:'+i,text:w}))),
       h('div',{class:'vs'},h('small',{class:'muted',text:'زمان باقی‌مانده'}),timerEl),
       h('div',{class:'lines'},inputs),send,status,res);
-    let iv=0;
+    let iv=0,done=false;
     send.onclick=async()=>{
       if(inputs.filter(x=>x.value.trim()).length<2){toast('حداقل دو مصراع بنویسید');return}
-      send.disabled=true;
-      try{update(await api('/api/match/submit',{method:'POST',body:{lines:inputs.map(x=>x.value)}}))}catch(e){toast(e.message);send.disabled=false}
+      send.disabled=true;inputs.forEach(x=>x.disabled=true);status.textContent='در حال ثبت…';sub++;
+      try{update(await api('/api/match/submit',{method:'POST',body:{lines:inputs.map(x=>x.value)},quiet:true}))}
+      catch(e){toast(e.message);send.disabled=false;inputs.forEach(x=>x.disabled=false);status.textContent=''}
+      sub=Math.max(0,sub-1);
     };
     function result(s){
+      if(done)return;done=true;
       const me=s.me,sc=s.result.scores,lab={words:'کلمات',rhyme:'قافیه',meter:'وزن',structure:'ساختار',meaning:'مفهوم'},mx={words:32,rhyme:21,meter:20,structure:10,meaning:17};
-      res.replaceChildren(
-        h('div',{class:'win',text:s.winner===-1?'مساوی شد':(s.winner===me?'شما برنده شدید!':s.players[1-me].name+' برنده شد')}),
+      res.replaceChildren(resBox(s,me),
         h('div',{class:'pairs'},[me,1-me].map(i=>h('div',{},
           h('b',{text:(i===me?'شما':s.players[i].name)+' — '+toFa(sc[i].total)+' از ۱۰۰'}),
           Object.keys(lab).map(k=>h('div',{class:'bar-row'},h('span',{text:lab[k]}),h('div',{class:'meter'},h('i',{style:`width:${Math.round((sc[i].parts[k]||0)/mx[k]*100)}%`})),h('span',{text:toFa(sc[i].parts[k]||0)}))),
@@ -3433,44 +3959,62 @@ function runMatch(root,tok){
   }
 
   function buildLetter(s0){
-    const me=s0.me;
-    const meBox=h('div'),oppBox=h('div'),letterEl=h('div',{class:'bigletter'}),turnEl=h('p',{class:'muted',style:'text-align:center'});
+    const me=s0.me;let last=-1,wasMine=false,prevLetter='',prevScore=[-1,-1],cnt=0;
+    const meBox=h('div'),oppBox=h('div'),letterEl=h('div',{class:'bigletter'}),turnEl=h('p',{class:'muted',style:'text-align:center;min-height:1.6em'});
     const timerEl=h('b',{class:'timer',style:'display:block;text-align:center'});
+    const think=h('div',{class:'think'},h('div',{class:'dots'},h('i'),h('i'),h('i')),h('p',{class:'muted'}),h('div',{class:'tbar'},h('i')));
+    const thinkTxt=think.querySelector('p');
+    const chk=h('div',{class:'chk'},h('span',{class:'ld-star'}),h('b',{text:'در حال سنجیدن بیت با شعرهای سپهر…'}));
     const i1=h('input',{class:'inp',dir:'auto',maxlength:'120',placeholder:'مصراع اول','aria-label':'مصراع اول'});
     const i2=h('input',{class:'inp',dir:'auto',maxlength:'120',placeholder:'مصراع دوم','aria-label':'مصراع دوم'});
     const send=h('button',{class:'btn primary',type:'button',text:'ثبت بیت'}),msg=h('p',{class:'err'}),hist=h('ul',{class:'hist'}),end=h('div');
-    const el=h('div',{class:'secbox glass'},h('div',{class:'score'},meBox,oppBox),letterEl,turnEl,timerEl,h('div',{class:'lines'},i1,i2),send,msg,end,hist);
+    const el=h('div',{class:'secbox glass'},h('div',{class:'score'},meBox,oppBox),letterEl,turnEl,think,timerEl,h('div',{class:'lines'},i1,i2),send,chk,msg,end,hist);
     let iv=0;
-    send.onclick=async()=>{
+    const doSend=async()=>{
+      if(send.disabled)return;
       if(!i1.value.trim()||!i2.value.trim()){msg.textContent='هر دو مصراع را بنویسید.';return}
-      send.disabled=true;msg.textContent='';
+      send.disabled=i1.disabled=i2.disabled=true;msg.textContent='';chk.classList.add('on');sub++;
       try{
-        const r=await api('/api/match/submit',{method:'POST',body:{lines:[i1.value,i2.value]}});
+        const r=await api('/api/match/submit',{method:'POST',body:{lines:[i1.value,i2.value]},quiet:true});
+        sub=Math.max(0,sub-1);chk.classList.remove('on');
         if(r.last){
-          if(r.last.ok){i1.value='';i2.value='';toast(r.last.kind==='found'?`در وب‌گاه پیدا شد (${toFa(r.last.sim)}٪) — ۲ امتیاز`:'شعر بودن تأیید شد — ۱ امتیاز')}
-          else msg.textContent=r.last.reason||'پذیرفته نشد.';
+          if(r.last.ok){i1.value='';i2.value='';toast(`در سپهر پیدا شد (${toFa(r.last.sim)}٪) — ۲ امتیاز`)}
+          else{msg.textContent=r.last.reason||'پذیرفته نشد.'}
         }
-        update(r);
-      }catch(e){msg.textContent=e.message}
-      send.disabled=false;
+        last=-1;update(r);
+      }catch(e){sub=Math.max(0,sub-1);chk.classList.remove('on');msg.textContent=e.message;send.disabled=i1.disabled=i2.disabled=false}
     };
+    send.onclick=doSend;
+    [i1,i2].forEach(x=>x.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();x===i1?i2.focus():doSend()}}));
     const hearts=n=>n>0?'❤'.repeat(n):'—';
     function update(s){
+      if(s.n!=null){if(s.n<last)return;last=s.n}
       const mine=s.status==='play'&&s.turn===me;
-      meBox.replaceChildren(h('small',{text:'شما'}),h('b',{text:toFa(s.score[me])}),h('small',{text:hearts(s.lives[me])}));
-      oppBox.replaceChildren(h('small',{text:s.players[1-me].name}),h('b',{text:toFa(s.score[1-me])}),h('small',{text:hearts(s.lives[1-me])}));
+      const sc=[s.score[me],s.score[1-me]];
+      const box=(b,name,i,lives)=>{b.replaceChildren(h('small',{text:name}),h('b',{text:toFa(sc[i]),class:prevScore[i]>=0&&prevScore[i]!==sc[i]?'bump':''}),h('small',{text:hearts(lives)}))};
+      box(meBox,'شما',0,s.lives[me]);box(oppBox,s.players[1-me].name,1,s.lives[1-me]);prevScore=sc;
       meBox.className=mine?'turn':'';oppBox.className=s.status==='play'&&!mine?'turn':'';
-      letterEl.textContent=s.letter||'';
-      turnEl.textContent=s.status==='done'?'':(mine?'نوبت شماست؛ بیتی بگویید که با این حرف شروع شود':'نوبت '+s.players[s.turn].name+'…');
+      if(s.letter&&s.letter!==prevLetter){letterEl.textContent=s.letter;letterEl.classList.remove('flip');void letterEl.offsetWidth;letterEl.classList.add('flip');prevLetter=s.letter}
+      const th=s.status==='play'&&s.thinking;
+      think.classList.toggle('on',!!th);
+      if(th){
+        thinkTxt.textContent=s.players[s.turn].name+' در حال فکر کردن است…';
+        const bar=think.querySelector('.tbar i');bar.style.animation='none';void bar.offsetWidth;
+        bar.style.animation=`tfill ${Math.max(.3,(s.botAt-s.now)/1000)}s linear forwards`;
+      }
+      turnEl.textContent=s.status==='done'?'':(mine?'نوبت شماست؛ بیتی بگویید که با «'+s.letter+'» شروع شود':(th?'':'نوبت '+s.players[s.turn].name+'…'));
       [i1,i2,send].forEach(x=>{x.disabled=!mine});
-      hist.replaceChildren(...s.hist.slice().reverse().map(m=>h('li',{class:m.ok?'ok':'no'},
+      if(mine&&!wasMine){pulseTurn();setTimeout(()=>{try{i1.focus({preventScroll:true})}catch{}},350)}
+      wasMine=mine;
+      const base=s.n-s.hist.length;
+      hist.replaceChildren(...s.hist.slice().reverse().map((m,ri)=>{const idx=base+(s.hist.length-1-ri);return h('li',{class:(m.ok?'ok':'no')+(idx>=cnt&&cnt>0?' new':'')},
         `${m.by===me?'شما':s.players[m.by].name} (${m.letter}): `,m.text||(m.kind==='timeout'?'وقت تمام شد':'بیتی پیدا نشد'),
-        m.ok&&m.sim!=null?` — ${toFa(m.sim)}٪`:'',(!m.ok&&m.reason&&m.by===me)?' — '+m.reason:'')));
+        m.ok&&m.sim!=null?` — ${toFa(m.sim)}٪`:'',(!m.ok&&m.reason&&m.by===me)?' — '+m.reason:'')}));
+      cnt=s.n;
       clearInterval(iv);
-      if(s.status==='play')iv=clock(timerEl,s);else timerEl.textContent='';
+      if(s.status==='play'&&!th)iv=clock(timerEl,s);else timerEl.textContent='';
       if(s.status==='done'){
-        end.replaceChildren(h('div',{class:'win',text:s.winner===-1?'مساوی شد':(s.winner===me?'شما برنده شدید!':s.players[1-me].name+' برنده شد')}),again());
-        letterEl.textContent='';
+        end.replaceChildren(resBox(s,me),again());letterEl.textContent='';chk.classList.remove('on');
       }
     }
     return {el,update,stop(){clearInterval(iv)}};
@@ -3480,44 +4024,53 @@ function runMatch(root,tok){
     if(curKey==='menu')return;
     stopUi();curKey='menu';
     const st=ACCT.profile&&ACCT.profile.stats;
-    const mk=(mode,t,d)=>h('button',{class:'mode glass',type:'button',onclick:async e=>{
-      const b=e.currentTarget;b.disabled=true;
-      try{show(await api('/api/match/join',{method:'POST',body:{mode}}));loop()}catch(er){toast(er.message);b.disabled=false}
+    const mk=(mode,t,d)=>h('button',{class:'mode glass',type:'button',onclick:()=>{
+      halt();const g=gen;waiting(mode);
+      q(()=>api('/api/match/join',{method:'POST',body:{mode},quiet:true})).then(r=>{if(g!==gen||!ok())return;show(r);loop(g)}).catch(er=>{if(g!==gen||!ok())return;toast(er.message);show({status:'none'})});
     }},h('b',{text:t}),h('small',{text:d}));
-    root.replaceChildren(h('div',{class:'modes'},
+    swap(h('div',{},h('div',{class:'modes'},
       mk('words','چند کلمهٔ بی‌ربط','چهار کلمهٔ تصادفی به هر دو نفر داده می‌شود و ۱۵ دقیقه وقت دارید با آن‌ها یک رباعی بگویید. وزن، قافیه و مفهوم بررسی می‌شود.'),
-      mk('letter','حرف اول','یک حرف داده می‌شود و باید بیتی بگویید که با آن شروع شود. بیت با شعرهای وب‌گاه سنجیده می‌شود و نوبت به حریف می‌رسد.')),
-      st?h('p',{class:'note',style:'margin-top:12px',text:`مشاعره‌ها: ${toFa(st.played)} · برد: ${toFa(st.won)}`}):null);
+      mk('letter','حرف اول','یک حرف داده می‌شود و باید بیتی بگویید که با آن شروع شود. بیت باید دست‌کم ۹۰٪ با یکی از شعرهای سپهر مطابقت داشته باشد.')),
+      st?h('p',{class:'note',style:'margin-top:12px',text:`مشاعره‌ها: ${toFa(st.played)} · برد: ${toFa(st.won)}`}):null));
   }
-  function waiting(){
+  function waiting(mode){
     if(curKey==='wait')return;
     stopUi();curKey='wait';
-    root.replaceChildren(h('div',{class:'secbox glass',style:'text-align:center'},h('div',{class:'spin'}),h('h2',{text:'در جستجوی حریف…'}),
+    swap(h('div',{class:'secbox glass',style:'text-align:center'},
+      h('div',{class:'orbit'},h('i'),h('i'),h('i'),h('b',{text:'✦'})),h('h2',{text:'در جستجوی حریف…'}),
       h('p',{class:'muted',style:'margin-bottom:12px',text:'اگر کسی برخط نباشد، با یک ربات مشاعره می‌کنید.'}),
-      h('button',{class:'btn',type:'button',text:'انصراف',onclick:async()=>{await api('/api/match/leave',{method:'POST'}).catch(()=>{});show({status:'none'})}})));
+      h('div',{class:'tbar wb'},h('i')),
+      h('button',{class:'btn',type:'button',text:'انصراف',onclick:leaveNow})));
   }
   function show(s){
     if(!ok())return;
     if(s.status==='none')return menu();
-    if(s.status==='waiting')return waiting();
+    if(s.status==='waiting')return waiting(s.mode);
     const key=s.id+s.mode;
-    if(curKey!==key){stopUi();curKey=key;ui=s.mode==='words'?buildWords(s):buildLetter(s);root.replaceChildren(ui.el)}
+    if(curKey!==key){stopUi();curKey=key;ui=s.mode==='words'?buildWords(s):buildLetter(s);swap(ui.el)}
     ui.update(s);
   }
-  async function loop(){
+  async function loop(g){
     clearTimeout(timer);
-    if(!ok())return;
+    if(!ok()||g!==gen)return;
     let s;
-    try{s=await api('/api/match/state')}catch(e){
-      if(!ok())return;
+    try{s=await api('/api/match/state',{quiet:true})}catch(e){
+      if(!ok()||g!==gen)return;
       if(e.status===401){setToken('');ACCT.profile=null;root.replaceChildren(h('div',{class:'empty glass'},h('p',{text:'نشست شما تمام شده است؛ دوباره وارد شوید.'}),h('a',{class:'btn primary',href:'#/me',text:'ورود'})));return}
-      timer=setTimeout(loop,4000);return;
+      if(e.status===403){root.replaceChildren(h('div',{class:'empty glass'},h('p',{text:e.message})));return}
+      timer=setTimeout(()=>loop(g),2500);return;
     }
-    if(!ok())return;
-    show(s);
-    if(s.status==='play'||s.status==='waiting')timer=setTimeout(loop,s.mode==='words'?2500:1200);
+    if(!ok()||g!==gen)return;
+    if(!sub)show(s);
+    if(s.status==='play'||s.status==='waiting'){
+      let d=s.mode==='words'?2000:900;
+      if(s.thinking&&s.botAt)d=Math.max(250,s.botAt-s.now+150);
+      else if(s.status==='play'&&s.mode==='letter'&&s.turn===s.me)d=1600;
+      timer=setTimeout(()=>loop(g),d);
+    }
   }
-  loop();
+  menu();
+  loop(gen);
 }
 
 function abjadView(){
@@ -3719,10 +4272,13 @@ buildScrollBtns();
   };
   new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(prep))).observe($('#view'),{childList:true,subtree:true});
 })();
+(function(){let last='';const go=e=>{const a=e.target.closest&&e.target.closest('a[href^="#/poem/"]');if(!a)return;const id=(a.getAttribute('href').split('/')[2]||'').replace(/\D.*/,'');if(!id||id===last)return;last=id;get('/poem/'+id+POEM_Q,false,true).catch(()=>{})};document.addEventListener('pointerover',go,{passive:true});document.addEventListener('touchstart',go,{passive:true})})();
 buildDock();acctInit();
 applyFont(fontKey());
 addEventListener('hashchange',render);
 render();
+addEventListener('appinstalled',()=>{try{localStorage.setItem('gj-dl-armed','1')}catch{}if(DL.isOn()){DL.start();toast('برنامک نصب شد؛ دانلود شعرها برای خواندن برون‌خط آغاز شد')}});
+setTimeout(()=>{if(DL.isOn()&&(DL.standalone()||DL.armed()))DL.start()},4000);
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script>
 </body>
